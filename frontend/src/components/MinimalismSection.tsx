@@ -24,7 +24,7 @@ export default function MinimalismSection({
         <img
           src="/left.png"
           alt="Eucalyptus Left Branch"
-          className="h-[90%] sm:h-[98%] w-auto object-contain max-w-[190px] sm:max-w-[380px] opacity-95 -ml-1 sm:ml-0"
+          className="h-[96%] sm:h-[100%] w-auto object-contain max-w-[360px] sm:max-w-[720px] opacity-95 -ml-1 sm:ml-0"
           onError={(e) => {
             (e.target as HTMLImageElement).src = '/images/eucalyptus_left.png';
           }}
@@ -32,20 +32,20 @@ export default function MinimalismSection({
       </div>
 
       {/* ── Right Side Decorative Eucalyptus Leaf Branch (rite.png) ───────── */}
-      <div className="absolute right-[5%] sm:right-[10%] bottom-0 z-0 pointer-events-none flex items-end">
+      <div className="absolute right-[2%] sm:right-[6%] bottom-0 z-0 pointer-events-none flex items-end">
         <img
           src="/rite.png"
           alt="Eucalyptus Right Branch"
-          className="h-[88%] sm:h-[98%] w-auto object-contain max-w-[340px] sm:max-w-[760px] opacity-95"
+          className="h-[92%] sm:h-[100%] w-auto object-contain max-w-[440px] sm:max-w-[980px] opacity-95"
           onError={(e) => {
             (e.target as HTMLImageElement).src = '/images/eucalyptus_right.png';
           }}
         />
       </div>
 
-      {/* ── Main Content Area (Indented gracefully across screen sizes) ─────────────── */}
+      {/* ── Main Content Area (Shifted slightly to the right) ─────────────── */}
       <div
-        className="flex-1 flex flex-col justify-center max-w-4xl pt-16 sm:pt-20 pb-10 sm:pb-12 z-10 pr-12 sm:pr-16 pl-16 xs:pl-20 sm:pl-[min(20vw,280px)]"
+        className="flex-1 flex flex-col justify-center max-w-4xl pt-16 sm:pt-20 pb-10 sm:pb-12 z-10 pr-12 sm:pr-16 pl-24 xs:pl-32 sm:pl-[min(26vw,360px)]"
       >
         {/* Headline: "Minimalism is freedom" - Big, bold, heavy grotesk font */}
         <h2 className="text-4xl xs:text-5xl sm:text-7xl md:text-[5.5rem] lg:text-[6.2rem] font-black tracking-tight text-[#111111] leading-[1.02] animate-fade-rise">
@@ -76,7 +76,7 @@ export default function MinimalismSection({
 
       {/* ── Bottom Bar: Social Links (Indented to match headline alignment) ──────── */}
       <div
-        className="flex items-center gap-6 sm:gap-8 text-xs sm:text-base font-bold text-[#111111] z-10 pb-2 sm:pb-4 pl-16 xs:pl-20 sm:pl-[min(20vw,280px)]"
+        className="flex items-center gap-6 sm:gap-8 text-xs sm:text-base font-bold text-[#111111] z-10 pb-2 sm:pb-4 pl-24 xs:pl-32 sm:pl-[min(26vw,360px)]"
       >
         <a
           href="https://instagram.com"
