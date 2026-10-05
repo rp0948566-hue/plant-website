@@ -1,10 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 @import "./styles/theme.css";
 
+/* Custom extra-small breakpoint: xs: targets 420px+ phones in landscape / large phones */
+@theme {
+  --breakpoint-xs: 26rem;
+}
+
 :root {
   --font-serif: 'Instrument Serif', Georgia, serif;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  --color-botanical-dark: #1A2621;
+  --color-botanical-forest: #273A32;
+  --color-botanical-sage: #3F5247;
+  --color-botanical-accent: #3E6B52;
+  --color-parchment: #F9F7F1;
+  --color-parchment-alt: #F1ECE1;
+  --color-cream-border: #E5DEC9;
+  --color-earth-amber: #A46A42;
 }
 
 .font-serif {
@@ -23,133 +37,87 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #0c0c0e;
+  background-color: #0E1613;
+  color: #1A2621;
 }
 
 body {
-  background-color: #0c0c0e;
-  color: #000000;
+  background-color: #0E1613;
+  color: #1A2621;
   font-family: var(--font-sans);
   overflow-x: hidden;
   width: 100%;
   min-height: 100vh;
-  padding: 6px; /* 6px outer inset on phone screens */
+  padding: 6px;
 }
 
 @media (min-width: 640px) {
   body {
-    padding: 9px; /* 9px outer inset space on desktop */
+    padding: 10px;
   }
 }
 
-/* ── Global Outer-Edge / Inset Shell ─────────────────────────────────────── */
+/* ── Global Botanical Inset Shell ─────────────────────────────────────── */
 .global-inset-shell {
   position: relative;
   width: 100%;
   min-height: calc(100vh - 12px);
-  border-radius: 10px; /* 10px rounded inner corners on mobile */
-  border: 1px solid rgba(255, 255, 255, 0.12); /* Subtle 1px neutral low-opacity border */
-  overflow: hidden; /* Prevents content from escaping rounded corners */
-  background-color: #ffffff;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+  background-color: #F8F5EE;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.45);
 }
 
 @media (min-width: 640px) {
   .global-inset-shell {
-    min-height: calc(100vh - 18px);
-    border-radius: 14px; /* 14px rounded inner corners on desktop */
+    min-height: calc(100vh - 20px);
+    border-radius: 18px;
   }
 }
 
-/* ── Explicit Layout & Button Rules matching Image 2 exactly ── */
-.nav-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.75rem 2rem;
-  max-width: 80rem;
-  margin: 0 auto;
-  width: 100%;
+/* Botanical paper grain texture overlay (kept whisper-subtle so cards stay crisp) */
+.paper-texture {
+  background-color: #F8F5EE;
+  background-image: radial-gradient(rgba(63, 82, 71, 0.05) 0.6px, transparent 0.7px);
+  background-size: 22px 22px;
 }
 
-.nav-logo {
-  font-family: var(--font-serif);
-  font-size: 2.125rem;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: #000000;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: flex-start;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #EFE8DC;
+}
+::-webkit-scrollbar-thumb {
+  background: #A6B4AA;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3F5247;
 }
 
-.nav-menu {
-  display: flex;
-  align-items: center;
-  gap: 2.5rem;
+/* Smooth card transitions */
+.specimen-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
 }
 
-.nav-item-active {
-  color: #000000;
-  font-weight: 500;
-  font-size: 0.875rem;
-  text-decoration: none;
-  font-family: var(--font-sans);
+.specimen-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 30px -10px rgba(24, 38, 33, 0.12);
 }
 
-.nav-item {
-  color: #6F6F6F;
-  font-weight: 400;
-  font-size: 0.875rem;
-  text-decoration: none;
-  font-family: var(--font-sans);
-  transition: color 0.2s ease;
-}
-
-.nav-item:hover {
-  color: #000000;
-}
-
-.nav-cta-btn {
-  background-color: #000000;
-  color: #ffffff;
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  font-weight: 500;
-  padding: 0.65rem 1.6rem;
-  border-radius: 9999px;
-  border: none;
-  cursor: pointer;
-  white-space: nowrap;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.nav-cta-btn:hover {
-  transform: scale(1.03);
-}
-
-.hero-cta-btn {
-  background-color: #000000;
-  color: #ffffff;
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 1.25rem 3.5rem;
-  border-radius: 9999px;
-  border: none;
-  cursor: pointer;
-  white-space: nowrap;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 3rem;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
-
-.hero-cta-btn:hover {
-  transform: scale(1.03);
+/* Respect users who prefer reduced motion: kill rise/float animation */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-rise,
+  .animate-fade-rise-delay,
+  .animate-fade-rise-delay-2 {
+    animation: none;
+    opacity: 1;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }

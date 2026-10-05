@@ -9,103 +9,153 @@ export default function HeaderNav({ activeTab, onTabChange }: Props) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 px-5 sm:px-16 py-5 sm:py-8 flex items-center justify-between bg-transparent backdrop-blur-[2px] transition-all duration-300">
-      {/* ── Brand Logo: "Minimalism." ─────────────────────────────────────── */}
+    <>
+    <header className="fixed top-[6px] sm:top-[10px] left-[6px] sm:left-[10px] right-[6px] sm:right-[10px] z-40 rounded-t-[12px] sm:rounded-t-[18px] px-5 sm:px-12 py-5 sm:py-6 flex items-center justify-between bg-[#FAF7F2]/85 backdrop-blur-md border-b border-[#E7DDCF]/70 transition-all duration-300">
+      {/* ── Brand Logo: "Leaf Herbarium." ─────────────────────────────────── */}
       <a
         href="#"
         onClick={(e) => {
           e.preventDefault();
           onTabChange('Home');
         }}
-        className="text-xl sm:text-2xl font-bold tracking-tight text-[#111111] hover:opacity-80 transition-opacity"
+        className="flex items-center gap-2 group cursor-pointer"
       >
-        Minimalism.
+        <span className="w-8 h-8 rounded-full bg-[#3F4E49] text-[#FAF7F2] flex items-center justify-center text-sm font-serif italic shadow-xs group-hover:bg-[#2B3833] transition-colors">
+          🌿
+        </span>
+        <div className="flex flex-col">
+          <span className="text-lg sm:text-xl font-serif tracking-tight font-medium text-[#1A2621]">
+            Leaf Herbarium
+          </span>
+          <span className="text-[9px] tracking-widest uppercase font-semibold text-[#667770]">
+            Botanical Archive • 2026
+          </span>
+        </div>
       </a>
 
       {/* ── Center Navigation Links ────────────────────────────────────────── */}
-      <nav className="hidden md:flex items-center gap-12 text-base">
-        {/* Home Link */}
+      <nav className="hidden md:flex items-center gap-10 text-sm">
+        {/* Home */}
         <button
           onClick={() => onTabChange('Home')}
-          className={`relative pb-1 font-semibold transition-colors cursor-pointer ${
-            activeTab === 'Home' ? 'text-[#111111]' : 'text-[#8E8E8E] hover:text-[#111111]'
+          className={`relative py-1 font-medium transition-colors cursor-pointer ${
+            activeTab === 'Home' ? 'text-[#1A2621] font-semibold' : 'text-[#62736C] hover:text-[#1A2621]'
           }`}
         >
-          Home
+          Overview
           {activeTab === 'Home' && (
-            <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#111111] rounded-full animate-fade-rise" />
+            <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#3F4E49] rounded-full animate-fade-rise" />
           )}
         </button>
 
-        {/* Portfolio Link */}
+        {/* Collection */}
         <button
-          onClick={() => onTabChange('Portfolio')}
-          className={`relative pb-1 font-medium transition-colors cursor-pointer ${
-            activeTab === 'Portfolio' ? 'text-[#111111]' : 'text-[#8E8E8E] hover:text-[#111111]'
+          onClick={() => onTabChange('Collection')}
+          className={`relative py-1 font-medium transition-colors cursor-pointer ${
+            activeTab === 'Collection' ? 'text-[#1A2621] font-semibold' : 'text-[#62736C] hover:text-[#1A2621]'
           }`}
         >
-          Portfolio
-          {activeTab === 'Portfolio' && (
-            <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#111111] rounded-full animate-fade-rise" />
+          The 8 Specimens
+          {activeTab === 'Collection' && (
+            <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#3F4E49] rounded-full animate-fade-rise" />
           )}
         </button>
 
-        {/* Blog Link */}
+        {/* Field Proof */}
         <button
-          onClick={() => onTabChange('Blog')}
-          className={`relative pb-1 font-medium transition-colors cursor-pointer ${
-            activeTab === 'Blog' ? 'text-[#111111]' : 'text-[#8E8E8E] hover:text-[#111111]'
+          onClick={() => onTabChange('FieldProof')}
+          className={`relative py-1 font-medium transition-colors cursor-pointer ${
+            activeTab === 'FieldProof' ? 'text-[#1A2621] font-semibold' : 'text-[#62736C] hover:text-[#1A2621]'
           }`}
         >
-          Blog
-          {activeTab === 'Blog' && (
-            <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#111111] rounded-full animate-fade-rise" />
+          Field Evidence & Geotag
+          {activeTab === 'FieldProof' && (
+            <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#3F4E49] rounded-full animate-fade-rise" />
+          )}
+        </button>
+
+        {/* Project Details */}
+        <button
+          onClick={() => onTabChange('About')}
+          className={`relative py-1 font-medium transition-colors cursor-pointer ${
+            activeTab === 'About' ? 'text-[#1A2621] font-semibold' : 'text-[#62736C] hover:text-[#1A2621]'
+          }`}
+        >
+          Study Notes
+          {activeTab === 'About' && (
+            <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#3F4E49] rounded-full animate-fade-rise" />
           )}
         </button>
       </nav>
 
-      {/* ── Right Side: Minimalist Hamburger Icon (═) ───────────────────────── */}
+      {/* ── Right side Specimen Badge / Quick Action ── */}
+      <div className="hidden md:flex items-center gap-3">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EAE2D5] text-xs font-semibold text-[#3F4E49] border border-[#DBD0C0]">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+          8 Sheets Pressed
+        </span>
+      </div>
+
+      {/* ── Mobile Hamburger Icon (stays above overlay) ───────────────────────── */}
       <button
         onClick={() => setMenuOpen(!menuOpen)}
-        className="p-2 text-[#111111] hover:opacity-70 transition-opacity cursor-pointer flex flex-col justify-center gap-[5px] sm:gap-[6px] z-50"
+        className="md:hidden relative z-50 p-2 text-[#1A2621] hover:opacity-70 transition-opacity cursor-pointer flex flex-col justify-center gap-[5px] rounded-lg bg-[#EFE8DC]/80"
         aria-label="Toggle Menu"
+        aria-expanded={menuOpen}
       >
-        <span className={`w-5 sm:w-6 h-[2px] bg-[#111111] transition-transform duration-300 ${menuOpen ? 'rotate-45 translate-y-[3.5px] sm:translate-y-[4px]' : ''}`} />
-        <span className={`w-5 sm:w-6 h-[2px] bg-[#111111] transition-transform duration-300 ${menuOpen ? '-rotate-45 -translate-y-[3.5px] sm:-translate-y-[4px]' : ''}`} />
+        <span className={`w-5 h-[2px] bg-[#1A2621] transition-transform duration-300 ${menuOpen ? 'rotate-45 translate-y-[3.5px]' : ''}`} />
+        <span className={`w-5 h-[2px] bg-[#1A2621] transition-transform duration-300 ${menuOpen ? '-rotate-45 -translate-y-[3.5px]' : ''}`} />
       </button>
+    </header>
 
-      {/* ── Mobile Menu Overlay ───────────────────────────────────────────── */}
+      {/* ── Mobile Menu Overlay (sibling of header so fixed inset-0 covers viewport;
+          kept outside header because header's backdrop-blur would trap fixed children) ── */}
       {menuOpen && (
-        <div className="fixed inset-0 bg-white/95 backdrop-blur-md z-40 flex flex-col items-center justify-center gap-8 text-2xl font-bold animate-fade-rise min-h-screen">
+        <div className="fixed inset-0 z-30 bg-[#FAF7F2]/95 backdrop-blur-lg flex flex-col items-center justify-center gap-6 text-xl font-medium animate-fade-rise">
           <button
             onClick={() => {
               onTabChange('Home');
               setMenuOpen(false);
             }}
-            className={`transition-colors ${activeTab === 'Home' ? 'text-[#111111] underline underline-offset-8' : 'text-[#666666] hover:text-[#111111]'}`}
+            className={`transition-colors ${activeTab === 'Home' ? 'text-[#3F4E49] font-bold underline underline-offset-8' : 'text-[#62736C] hover:text-[#1A2621]'}`}
           >
-            Home
+            Overview
           </button>
           <button
             onClick={() => {
-              onTabChange('Portfolio');
+              onTabChange('Collection');
               setMenuOpen(false);
             }}
-            className={`transition-colors ${activeTab === 'Portfolio' ? 'text-[#111111] underline underline-offset-8' : 'text-[#666666] hover:text-[#111111]'}`}
+            className={`transition-colors ${activeTab === 'Collection' ? 'text-[#3F4E49] font-bold underline underline-offset-8' : 'text-[#62736C] hover:text-[#1A2621]'}`}
           >
-            Portfolio
+            The 8 Specimens
           </button>
           <button
             onClick={() => {
-              onTabChange('Blog');
+              onTabChange('FieldProof');
               setMenuOpen(false);
             }}
-            className={`transition-colors ${activeTab === 'Blog' ? 'text-[#111111] underline underline-offset-8' : 'text-[#666666] hover:text-[#111111]'}`}
+            className={`transition-colors ${activeTab === 'FieldProof' ? 'text-[#3F4E49] font-bold underline underline-offset-8' : 'text-[#62736C] hover:text-[#1A2621]'}`}
           >
-            Blog
+            Field Evidence & Geotag
           </button>
+          <button
+            onClick={() => {
+              onTabChange('About');
+              setMenuOpen(false);
+            }}
+            className={`transition-colors ${activeTab === 'About' ? 'text-[#3F4E49] font-bold underline underline-offset-8' : 'text-[#62736C] hover:text-[#1A2621]'}`}
+          >
+            Study Notes & Submission
+          </button>
+
+          <div className="mt-6 pt-6 border-t border-[#E7DDCF] text-center">
+            <span className="text-xs uppercase tracking-widest text-[#7C8B84] font-semibold">
+              Indore Herbarium Project • 2026
+            </span>
+          </div>
         </div>
       )}
-    </header>
+    </>
   );
 }

@@ -1,115 +1,89 @@
 import { useState, useEffect, useRef } from 'react';
-import IntroAnimation from './components/IntroAnimation';
 import HeaderNav from './components/HeaderNav';
 import CinematicHero from './components/CinematicHero';
-import MinimalismSection from './components/MinimalismSection';
+import LeafCollection from './components/LeafCollection';
+import FieldProof from './components/FieldProof';
+import HerbariumFooter from './components/HerbariumFooter';
+import { LEAF_COLLECTION } from './data/leaves';
 
 export default function App() {
-  const [introFinished, setIntroFinished] = useState(false);
-  const [overlayVisible, setOverlayVisible] = useState(true);
   const [activeTab, setActiveTab] = useState('Home');
-  const [currentSlide, setCurrentSlide] = useState(1);
-  const totalSlides = 4;
 
-  const section1Ref = useRef<HTMLDivElement>(null);
-  const section2Ref = useRef<HTMLDivElement>(null);
-
-  // ── Intro Animation completion handler ────────────────────────────────────
-  const handleIntroComplete = () => {
-    setIntroFinished(true);
-    setTimeout(() => {
-      setOverlayVisible(false);
-    }, 600);
-  };
-
-  const handleReplayIntro = () => {
-    setIntroFinished(false);
-    setOverlayVisible(true);
-  };
+  const heroRef = useRef<HTMLDivElement>(null);
+  const collectionRef = useRef<HTMLDivElement>(null);
+  const fieldProofRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
 
   // ── Smooth Scroll Navigation Handlers ──────────────────────────────────────
-  const scrollToSection = (sectionIndex: number) => {
-    if (sectionIndex === 1 && section1Ref.current) {
-      section1Ref.current.scrollIntoView({ behavior: 'smooth' });
-    } else if (sectionIndex >= 2 && section2Ref.current) {
-      section2Ref.current.scrollIntoView({ behavior: 'smooth' });
+  const scrollTo = (target: 'Home' | 'Collection' | 'FieldProof' | 'About') => {
+    setActiveTab(target);
+    if (target === 'Home' && heroRef.current) {
+      heroRef.current.scrollIntoView({ behavior: 'smooth' });
+    } else if (target === 'Collection' && collectionRef.current) {
+      collectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    } else if (target === 'FieldProof' && fieldProofRef.current) {
+      fieldProofRef.current.scrollIntoView({ behavior: 'smooth' });
+    } else if (target === 'About' && footerRef.current) {
+      footerRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
-  const handleNextSlide = () => {
-    const next = currentSlide >= totalSlides ? 1 : currentSlide + 1;
-    scrollToSection(next);
-  };
-
-  const handlePrevSlide = () => {
-    const prev = currentSlide <= 1 ? totalSlides : currentSlide - 1;
-    scrollToSection(prev);
-  };
-
-  // ── Intersection Observer to update active tab & slide counter on scroll ──
+  // ── Intersection Observer to update active tab on scroll ──
   useEffect(() => {
-    if (!introFinished) return;
-
     const handleScroll = () => {
-      const scrollPos = window.scrollY;
+      const scrollY = window.scrollY;
       const vh = window.innerHeight;
 
-      if (scrollPos < vh * 0.5) {
-        setCurrentSlide(1);
+      const collTop = collectionRef.current?.offsetTop || vh;
+      const fieldTop = fieldProofRef.current?.offsetTop || vh * 2;
+      const footerTop = footerRef.current?.offsetTop || vh * 3;
+
+      if (scrollY < collTop - 200) {
         setActiveTab('Home');
+      } else if (scrollY < fieldTop - 200) {
+        setActiveTab('Collection');
+      } else if (scrollY < footerTop - 300) {
+        setActiveTab('FieldProof');
       } else {
-        setCurrentSlide(2);
-        setActiveTab('Portfolio');
+        setActiveTab('About');
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [introFinished]);
+  }, []);
 
   return (
-    /* Global Inset Shell Application Wrapper */
-    <div className="global-inset-shell">
-      {/* ── Fixed Top Header Navigation (Minimalism. | Home Portfolio Blog | ═) ── */}
-      {introFinished && (
-        <HeaderNav
-          activeTab={activeTab}
-          onTabChange={(tab) => {
-            setActiveTab(tab);
-            if (tab === 'Home') scrollToSection(1);
-            if (tab === 'Portfolio') scrollToSection(2);
-            if (tab === 'Blog') scrollToSection(2);
-          }}
-        />
-      )}
+    /* Global Botanical Inset Shell Application Wrapper */
+    <div className="global-inset-shell paper-texture">
+      {/* ── Fixed Top Header Navigation ─────────────────────────────────────── */}
+      <HeaderNav
+        activeTab={activeTab}
+        onTabChange={(tab) => scrollTo(tab as 'Home' | 'Collection' | 'FieldProof' | 'About')}
+      />
 
-      {/* ── Section 1: Cinematic Video Hero Section ────────────────────────── */}
-      <div ref={section1Ref} className="w-full relative">
-        <CinematicHero onReplayIntro={handleReplayIntro} />
-      </div>
-
-      {/* ── Section 2: Minimalism is Freedom Section (Uploaded Image) ──────── */}
-      <div ref={section2Ref} className="w-full relative">
-        <MinimalismSection
-          currentSlide={currentSlide}
-          totalSlides={totalSlides}
-          onNextSlide={handleNextSlide}
-          onPrevSlide={handlePrevSlide}
+      {/* ── Section 1: Hero Section ────────────────────────────────────────── */}
+      <div ref={heroRef} className="w-full relative">
+        <CinematicHero
+          onExploreCollection={() => scrollTo('Collection')}
+          onViewFieldProof={() => scrollTo('FieldProof')}
         />
       </div>
 
-      {/* ── Opening Loading Animation Overlay ────────────────────────────── */}
-      {overlayVisible && (
-        <div
-          className="fixed inset-0 z-50 transition-opacity duration-600 ease-out"
-          style={{
-            opacity: introFinished ? 0 : 1,
-            pointerEvents: introFinished ? 'none' : 'auto',
-          }}
-        >
-          <IntroAnimation onComplete={handleIntroComplete} />
-        </div>
-      )}
+      {/* ── Section 2: 8 Preserved Leaf Specimens Collection ───────────────── */}
+      <div ref={collectionRef} className="w-full relative scroll-mt-20 sm:scroll-mt-24">
+        <LeafCollection specimens={LEAF_COLLECTION} />
+      </div>
+
+      {/* ── Section 3: In-Situ Fieldwork & Geotag Verification ──────────────── */}
+      <div ref={fieldProofRef} className="w-full relative scroll-mt-20 sm:scroll-mt-24">
+        <FieldProof />
+      </div>
+
+      {/* ── Section 4: Academic Project Submission Footer ───────────────────── */}
+      <div ref={footerRef} className="w-full relative scroll-mt-20 sm:scroll-mt-24">
+        <HerbariumFooter onScrollToTop={() => scrollTo('Home')} />
+      </div>
     </div>
   );
 }
