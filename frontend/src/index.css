@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+@import "./styles/theme.css";
+
+:root {
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #0c0c0e;
+}
+
+body {
+  background-color: #0c0c0e;
+  color: #000000;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+  padding: 9px; /* 9px outer inset space on all 4 sides */
+}
+
+/* ── Global Outer-Edge / Inset Shell ─────────────────────────────────────── */
+.global-inset-shell {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 18px);
+  border-radius: 14px; /* 14px rounded inner corners */
+  border: 1px solid rgba(255, 255, 255, 0.12); /* Subtle 1px neutral low-opacity border */
+  overflow: hidden; /* Prevents content from escaping rounded corners */
+  background-color: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+/* ── Explicit Layout & Button Rules matching Image 2 exactly ── */
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.75rem 2rem;
+  max-width: 80rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.nav-logo {
+  font-family: var(--font-serif);
+  font-size: 2.125rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #000000;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: flex-start;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.nav-item-active {
+  color: #000000;
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-decoration: none;
+  font-family: var(--font-sans);
+}
+
+.nav-item {
+  color: #6F6F6F;
+  font-weight: 400;
+  font-size: 0.875rem;
+  text-decoration: none;
+  font-family: var(--font-sans);
+  transition: color 0.2s ease;
+}
+
+.nav-item:hover {
+  color: #000000;
+}
+
+.nav-cta-btn {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.65rem 1.6rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-cta-btn:hover {
+  transform: scale(1.03);
+}
+
+.hero-cta-btn {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 1.25rem 3.5rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.hero-cta-btn:hover {
+  transform: scale(1.03);
+}
