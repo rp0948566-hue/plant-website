@@ -17,33 +17,30 @@ export default function MinimalismSection({
   const formattedTotal = String(totalSlides).padStart(2, '0');
 
   return (
-    <section className="relative w-full min-h-screen bg-[#F8F8F8] text-black flex flex-col justify-between px-8 sm:px-16 py-10 selection:bg-black selection:text-white overflow-hidden">
+    <section className="relative w-full min-h-screen bg-[#F8F8F8] text-black flex flex-col justify-between px-4 sm:px-16 py-8 sm:py-10 selection:bg-black selection:text-white overflow-hidden">
       
-      {/* ── Main Content Area (Indented to the right matching Image 3) ─────────────── */}
+      {/* ── Main Content Area (Indented gracefully across screen sizes) ─────────────── */}
       <div
-        className="flex-1 flex flex-col justify-center max-w-4xl pt-20 pb-12 z-10"
-        style={{
-          paddingLeft: 'min(20vw, 280px)',
-        }}
+        className="flex-1 flex flex-col justify-center max-w-4xl pt-16 sm:pt-20 pb-10 sm:pb-12 z-10 pr-12 sm:pr-16 pl-2 xs:pl-6 sm:pl-[min(20vw,280px)]"
       >
         {/* Headline: "Minimalism is freedom" - Big, bold, heavy grotesk font */}
-        <h2 className="text-5xl sm:text-7xl md:text-[5.5rem] lg:text-[6.2rem] font-black tracking-tight text-[#111111] leading-[1.02] animate-fade-rise">
+        <h2 className="text-4xl xs:text-5xl sm:text-7xl md:text-[5.5rem] lg:text-[6.2rem] font-black tracking-tight text-[#111111] leading-[1.02] animate-fade-rise">
           Minimalism is <br />
           freedom
         </h2>
 
         {/* Paragraph description */}
-        <p className="mt-6 text-sm sm:text-base text-[#666666] max-w-sm leading-relaxed font-normal animate-fade-rise-delay">
+        <p className="mt-4 sm:mt-6 text-xs sm:text-base text-[#666666] max-w-xs sm:max-w-sm leading-relaxed font-normal animate-fade-rise-delay">
           Minimalism is a tool that can help you find freedom. Freedom from fear.
           Freedom from worry. Freedom to overcome. Freedom from guilt. Freedom
           from depression.
         </p>
 
         {/* Action Link: "Read more ›" */}
-        <div className="mt-6 animate-fade-rise-delay-2">
+        <div className="mt-5 sm:mt-6 animate-fade-rise-delay-2">
           <a
             href="#read-more"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[#111111] group transition-opacity hover:opacity-75"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#111111] group transition-opacity hover:opacity-75"
           >
             Read more
             <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">
@@ -55,10 +52,7 @@ export default function MinimalismSection({
 
       {/* ── Bottom Bar: Social Links (Indented to match headline alignment) ──────── */}
       <div
-        className="flex items-center gap-8 text-sm sm:text-base font-bold text-[#111111] z-10 pb-4"
-        style={{
-          paddingLeft: 'min(20vw, 280px)',
-        }}
+        className="flex items-center gap-6 sm:gap-8 text-xs sm:text-base font-bold text-[#111111] z-10 pb-2 sm:pb-4 pl-2 xs:pl-6 sm:pl-[min(20vw,280px)]"
       >
         <a
           href="https://instagram.com"
@@ -79,26 +73,26 @@ export default function MinimalismSection({
       </div>
 
       {/* ── Right Vertical Slider Control ─────────────────────────────────── */}
-      <div className="absolute right-8 sm:right-16 top-1/2 -translate-y-1/2 flex flex-col items-center gap-4 z-20">
+      <div className="absolute right-3 sm:right-16 top-1/2 -translate-y-1/2 flex flex-col items-center gap-2 sm:gap-4 z-20">
         {/* Up / Prev Arrow */}
         <button
           onClick={onPrevSlide}
-          className="p-2 text-black hover:opacity-60 transition-opacity cursor-pointer"
+          className="p-1 sm:p-2 text-black hover:opacity-60 transition-opacity cursor-pointer"
           aria-label="Previous slide"
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 sm:w-5 sm:h-5">
             <line x1="12" y1="19" x2="12" y2="5" />
             <polyline points="5 12 12 5 19 12" />
           </svg>
         </button>
 
         {/* Total slides number (small muted top number) */}
-        <span className="text-sm font-semibold text-[#A0A0A0] tracking-widest">
+        <span className="text-xs sm:text-sm font-semibold text-[#A0A0A0] tracking-widest">
           {formattedTotal}
         </span>
 
         {/* Vertical Progress Line */}
-        <div className="w-[1.5px] h-20 bg-neutral-300 relative overflow-hidden my-1">
+        <div className="w-[1.5px] h-14 sm:h-20 bg-neutral-300 relative overflow-hidden my-1">
           <div
             className="absolute top-0 left-0 w-full bg-black transition-all duration-500 ease-out"
             style={{
@@ -108,17 +102,17 @@ export default function MinimalismSection({
         </div>
 
         {/* Current slide number (large bold bottom number) */}
-        <span className="text-3xl font-bold text-[#111111] tracking-tighter">
+        <span className="text-2xl sm:text-3xl font-bold text-[#111111] tracking-tighter">
           {formattedCurrent}
         </span>
 
         {/* Down / Next Arrow */}
         <button
           onClick={onNextSlide}
-          className="p-2 text-black hover:opacity-60 transition-opacity cursor-pointer"
+          className="p-1 sm:p-2 text-black hover:opacity-60 transition-opacity cursor-pointer"
           aria-label="Next slide"
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 sm:w-5 sm:h-5">
             <line x1="12" y1="5" x2="12" y2="19" />
             <polyline points="19 12 12 19 5 12" />
           </svg>

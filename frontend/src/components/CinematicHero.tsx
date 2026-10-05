@@ -68,7 +68,7 @@ export default function CinematicHero({ onReplayIntro }: Props) {
       <div
         className="absolute inset-x-0 bottom-0 z-0 overflow-hidden pointer-events-none"
         style={{
-          top: '300px',
+          top: 'clamp(200px, 30vh, 300px)',
         }}
       >
         <video
@@ -87,17 +87,14 @@ export default function CinematicHero({ onReplayIntro }: Props) {
 
       {/* ── Hero Section (z-10) ─────────────────────────────────────────── */}
       <main
-        className="relative z-10 flex flex-col items-center justify-center text-center px-6 pb-32"
-        style={{
-          paddingTop: 'calc(10rem - 50px)',
-        }}
+        className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-24 sm:pt-32 pb-24 sm:pb-32"
       >
         {/* Headline: "Beyond silence, we build the eternal." */}
         <h1
-          className="text-5xl sm:text-7xl md:text-8xl max-w-7xl font-normal font-serif animate-fade-rise"
+          className="text-4xl xs:text-5xl sm:text-7xl md:text-8xl max-w-7xl font-normal font-serif animate-fade-rise"
           style={{
-            lineHeight: 0.95,
-            letterSpacing: '-2.46px',
+            lineHeight: 0.98,
+            letterSpacing: '-0.04em',
             color: '#000000',
           }}
         >
@@ -105,19 +102,19 @@ export default function CinematicHero({ onReplayIntro }: Props) {
           <span className="italic text-[#6F6F6F]">silence,</span>{' '}
           we build{' '}
           <span className="italic text-[#6F6F6F]">the</span>
-          <br />
+          <br className="hidden xs:inline" />{' '}
           <span className="italic text-[#6F6F6F]">eternal.</span>
         </h1>
 
         {/* Description */}
-        <p className="text-base sm:text-lg max-w-2xl mt-8 leading-relaxed text-[#6F6F6F] animate-fade-rise-delay font-sans">
+        <p className="text-sm sm:text-base md:text-lg max-w-2xl mt-6 sm:mt-8 leading-relaxed text-[#6F6F6F] animate-fade-rise-delay font-sans px-2 sm:px-0">
           Building platforms for brilliant minds, fearless makers, and thoughtful
           souls. Through the noise, we craft digital havens for deep work and
           pure flows.
         </p>
 
         {/* Hero CTA Button */}
-        <button className="hero-cta-btn animate-fade-rise-delay-2">
+        <button className="hero-cta-btn animate-fade-rise-delay-2 !mt-8 sm:!mt-12 !px-10 sm:!px-14 !py-4 sm:!py-5 !text-sm sm:!text-base">
           Begin Journey
         </button>
       </main>
@@ -126,7 +123,7 @@ export default function CinematicHero({ onReplayIntro }: Props) {
       {onReplayIntro && (
         <button
           onClick={onReplayIntro}
-          className="fixed bottom-4 right-4 z-40 px-3 py-1.5 text-xs text-[#6F6F6F] hover:text-black bg-white/80 backdrop-blur-md rounded-full border border-neutral-200 hover:border-black transition-all shadow-sm"
+          className="fixed bottom-3 right-3 sm:bottom-4 sm:right-4 z-40 px-2.5 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs text-[#6F6F6F] hover:text-black bg-white/80 backdrop-blur-md rounded-full border border-neutral-200 hover:border-black transition-all shadow-sm"
           title="Replay opening animation"
         >
           ↺ Replay Intro

@@ -33,19 +33,32 @@ body {
   overflow-x: hidden;
   width: 100%;
   min-height: 100vh;
-  padding: 9px; /* 9px outer inset space on all 4 sides */
+  padding: 6px; /* 6px outer inset on phone screens */
+}
+
+@media (min-width: 640px) {
+  body {
+    padding: 9px; /* 9px outer inset space on desktop */
+  }
 }
 
 /* ── Global Outer-Edge / Inset Shell ─────────────────────────────────────── */
 .global-inset-shell {
   position: relative;
   width: 100%;
-  min-height: calc(100vh - 18px);
-  border-radius: 14px; /* 14px rounded inner corners */
+  min-height: calc(100vh - 12px);
+  border-radius: 10px; /* 10px rounded inner corners on mobile */
   border: 1px solid rgba(255, 255, 255, 0.12); /* Subtle 1px neutral low-opacity border */
   overflow: hidden; /* Prevents content from escaping rounded corners */
   background-color: #ffffff;
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+@media (min-width: 640px) {
+  .global-inset-shell {
+    min-height: calc(100vh - 18px);
+    border-radius: 14px; /* 14px rounded inner corners on desktop */
+  }
 }
 
 /* ── Explicit Layout & Button Rules matching Image 2 exactly ── */

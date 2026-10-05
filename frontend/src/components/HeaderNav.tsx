@@ -9,7 +9,7 @@ export default function HeaderNav({ activeTab, onTabChange }: Props) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 px-8 sm:px-16 py-8 flex items-center justify-between bg-transparent backdrop-blur-[2px] transition-all duration-300">
+    <header className="absolute top-0 left-0 right-0 z-50 px-5 sm:px-16 py-5 sm:py-8 flex items-center justify-between bg-transparent backdrop-blur-[2px] transition-all duration-300">
       {/* ── Brand Logo: "Minimalism." ─────────────────────────────────────── */}
       <a
         href="#"
@@ -17,7 +17,7 @@ export default function HeaderNav({ activeTab, onTabChange }: Props) {
           e.preventDefault();
           onTabChange('Home');
         }}
-        className="text-2xl font-bold tracking-tight text-[#111111] hover:opacity-80 transition-opacity"
+        className="text-xl sm:text-2xl font-bold tracking-tight text-[#111111] hover:opacity-80 transition-opacity"
       >
         Minimalism.
       </a>
@@ -67,22 +67,22 @@ export default function HeaderNav({ activeTab, onTabChange }: Props) {
       {/* ── Right Side: Minimalist Hamburger Icon (═) ───────────────────────── */}
       <button
         onClick={() => setMenuOpen(!menuOpen)}
-        className="p-2 text-[#111111] hover:opacity-70 transition-opacity cursor-pointer flex flex-col justify-center gap-[6px]"
+        className="p-2 text-[#111111] hover:opacity-70 transition-opacity cursor-pointer flex flex-col justify-center gap-[5px] sm:gap-[6px] z-50"
         aria-label="Toggle Menu"
       >
-        <span className={`w-6 h-[2px] bg-[#111111] transition-transform duration-300 ${menuOpen ? 'rotate-45 translate-y-[4px]' : ''}`} />
-        <span className={`w-6 h-[2px] bg-[#111111] transition-transform duration-300 ${menuOpen ? '-rotate-45 -translate-y-[4px]' : ''}`} />
+        <span className={`w-5 sm:w-6 h-[2px] bg-[#111111] transition-transform duration-300 ${menuOpen ? 'rotate-45 translate-y-[3.5px] sm:translate-y-[4px]' : ''}`} />
+        <span className={`w-5 sm:w-6 h-[2px] bg-[#111111] transition-transform duration-300 ${menuOpen ? '-rotate-45 -translate-y-[3.5px] sm:-translate-y-[4px]' : ''}`} />
       </button>
 
       {/* ── Mobile Menu Overlay ───────────────────────────────────────────── */}
       {menuOpen && (
-        <div className="absolute inset-0 bg-white/95 backdrop-blur-md z-40 flex flex-col items-center justify-center gap-8 text-2xl font-bold animate-fade-rise min-h-screen">
+        <div className="fixed inset-0 bg-white/95 backdrop-blur-md z-40 flex flex-col items-center justify-center gap-8 text-2xl font-bold animate-fade-rise min-h-screen">
           <button
             onClick={() => {
               onTabChange('Home');
               setMenuOpen(false);
             }}
-            className="hover:opacity-60"
+            className={`transition-colors ${activeTab === 'Home' ? 'text-[#111111] underline underline-offset-8' : 'text-[#666666] hover:text-[#111111]'}`}
           >
             Home
           </button>
@@ -91,7 +91,7 @@ export default function HeaderNav({ activeTab, onTabChange }: Props) {
               onTabChange('Portfolio');
               setMenuOpen(false);
             }}
-            className="hover:opacity-60"
+            className={`transition-colors ${activeTab === 'Portfolio' ? 'text-[#111111] underline underline-offset-8' : 'text-[#666666] hover:text-[#111111]'}`}
           >
             Portfolio
           </button>
@@ -100,7 +100,7 @@ export default function HeaderNav({ activeTab, onTabChange }: Props) {
               onTabChange('Blog');
               setMenuOpen(false);
             }}
-            className="hover:opacity-60"
+            className={`transition-colors ${activeTab === 'Blog' ? 'text-[#111111] underline underline-offset-8' : 'text-[#666666] hover:text-[#111111]'}`}
           >
             Blog
           </button>
