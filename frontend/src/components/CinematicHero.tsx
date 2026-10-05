@@ -64,13 +64,8 @@ export default function CinematicHero() {
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-white text-black font-sans selection:bg-black selection:text-white">
-      {/* ── Background video layer (z-0) ────────────────────────────────── */}
-      <div
-        className="absolute inset-x-0 bottom-0 z-0 overflow-hidden pointer-events-none"
-        style={{
-          top: '300px',
-        }}
-      >
+      {/* ── Scenic video background layer full-screen (z-0) ────────────────────────── */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
           ref={videoRef}
           src={VIDEO_URL}
@@ -82,43 +77,11 @@ export default function CinematicHero() {
         />
 
         {/* Gradient overlay positioned over the video: from white via transparent to white */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white pointer-events-none" />
       </div>
 
-      {/* ── Hero Section (z-10) ─────────────────────────────────────────── */}
-      <main
-        className="relative z-10 flex flex-col items-center justify-center text-center px-6 pb-36 sm:pb-40"
-        style={{
-          paddingTop: 'calc(8rem - 45px)',
-        }}
-      >
-        {/* Headline: "Beyond silence, we build the eternal." */}
-        <h1
-          className="text-5xl sm:text-7xl md:text-8xl max-w-7xl font-normal font-serif animate-fade-rise"
-          style={{
-            lineHeight: 0.95,
-            letterSpacing: '-2.46px',
-            color: '#000000',
-          }}
-        >
-          Beyond{' '}
-          <span className="italic text-[#6F6F6F]">silence,</span>{' '}
-          we build{' '}
-          <span className="italic text-[#6F6F6F]">the eternal.</span>
-        </h1>
-
-        {/* Description */}
-        <p className="text-base sm:text-lg max-w-2xl mt-8 leading-relaxed text-[#6F6F6F] animate-fade-rise-delay font-sans">
-          Building platforms for brilliant minds, fearless makers, and thoughtful
-          souls. Through the noise, we craft digital havens for deep work and
-          pure flows.
-        </p>
-
-        {/* Hero CTA Button */}
-        <button className="hero-cta-btn animate-fade-rise-delay-2">
-          Begin Journey
-        </button>
-      </main>
+      {/* ── Empty Hero Section Spacer ───────────────────────────────────────── */}
+      <main className="relative z-10 min-h-screen w-full" />
     </div>
   );
 }
