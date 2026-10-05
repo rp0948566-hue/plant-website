@@ -24,7 +24,7 @@ export default function MinimalismSection({
         <img
           src="/left.png"
           alt="Eucalyptus Left Branch"
-          className="h-[96%] sm:h-[100%] w-auto object-contain max-w-[360px] sm:max-w-[720px] opacity-95 -ml-1 sm:ml-0"
+          className="h-[105%] sm:h-[120%] w-auto object-contain max-w-[720px] sm:max-w-[1440px] opacity-95 -ml-2 sm:-ml-4"
           onError={(e) => {
             (e.target as HTMLImageElement).src = '/images/eucalyptus_left.png';
           }}
@@ -32,11 +32,11 @@ export default function MinimalismSection({
       </div>
 
       {/* ── Right Side Decorative Eucalyptus Leaf Branch (rite.png) ───────── */}
-      <div className="absolute right-[2%] sm:right-[6%] bottom-0 z-0 pointer-events-none flex items-end">
+      <div className="absolute right-[1%] sm:right-[4%] bottom-0 z-0 pointer-events-none flex items-end">
         <img
           src="/rite.png"
           alt="Eucalyptus Right Branch"
-          className="h-[92%] sm:h-[100%] w-auto object-contain max-w-[440px] sm:max-w-[980px] opacity-95"
+          className="h-[98%] sm:h-[115%] w-auto object-contain max-w-[570px] sm:max-w-[1270px] opacity-95"
           onError={(e) => {
             (e.target as HTMLImageElement).src = '/images/eucalyptus_right.png';
           }}
