@@ -7,7 +7,7 @@ interface Props {
   onReplayIntro?: () => void;
 }
 
-export default function CinematicHero({ onReplayIntro }: Props) {
+export default function CinematicHero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const rafRef = useRef<number>(0);
   const [videoOpacity, setVideoOpacity] = useState(0);
@@ -119,17 +119,6 @@ export default function CinematicHero({ onReplayIntro }: Props) {
           Begin Journey
         </button>
       </main>
-
-      {/* Subtle replay intro trigger fixed at bottom right */}
-      {onReplayIntro && (
-        <button
-          onClick={onReplayIntro}
-          className="fixed bottom-3 right-3 sm:bottom-4 sm:right-4 z-40 px-2.5 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs text-[#6F6F6F] hover:text-black bg-white/80 backdrop-blur-md rounded-full border border-neutral-200 hover:border-black transition-all shadow-sm"
-          title="Replay opening animation"
-        >
-          ↺ Replay Intro
-        </button>
-      )}
     </div>
   );
 }

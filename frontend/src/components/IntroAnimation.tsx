@@ -63,11 +63,13 @@ export default function IntroAnimation({ onComplete }: Props) {
       if (!t0Ref.current) t0Ref.current = ts;
       const t = (ts - t0Ref.current) / 1000;
 
-      // When animation finishes both waves and settles:
-      if (onComplete && t >= DARK_END + SETTLE_HOLD && !completedRef.current) {
-        completedRef.current = true;
-        onComplete();
-        return; // stop RAF
+      // When animation finishes both waves and settles, restart loop seamlessly:
+      if (t >= DARK_END + SETTLE_HOLD) {
+        t0Ref.current = ts;
+        if (onComplete && !completedRef.current) {
+          completedRef.current = true;
+          onComplete();
+        }
       }
 
       const W = canvas.width;
