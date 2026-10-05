@@ -70,15 +70,14 @@ export default function App() {
   return (
     /* Global Inset Shell Application Wrapper */
     <div className="global-inset-shell">
-      {/* ── Fixed Top Header Navigation (Minimalism. | Home Portfolio Blog | ═) ── */}
+      {/* ── Fixed Top Header Navigation (Aethera® | Home Studio About Journal Reach Us | Begin Journey) ── */}
       {introFinished && (
         <HeaderNav
           activeTab={activeTab}
           onTabChange={(tab) => {
             setActiveTab(tab);
             if (tab === 'Home') scrollToSection(1);
-            if (tab === 'Portfolio') scrollToSection(2);
-            if (tab === 'Blog') scrollToSection(2);
+            else scrollToSection(2);
           }}
         />
       )}
