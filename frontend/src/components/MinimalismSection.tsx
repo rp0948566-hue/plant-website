@@ -43,8 +43,8 @@ export default function MinimalismSection(_props: Props) {
             className="text-[2.3rem] xs:text-[2.8rem] sm:text-6xl md:text-7xl lg:text-[6.2rem] xl:text-[7.2rem] tracking-tight text-[#111111] leading-[0.94] text-center uppercase font-condensed"
             style={{ fontFamily: 'var(--font-condensed)' }}
           >
-            <span className="block">Pressed with</span>
-            <span className="block">patience</span>
+            <span className="block">Nature,</span>
+            <span className="block">Preserved</span>
           </h1>
           <p className="mt-5 max-w-xl text-sm sm:text-base text-[#5F6B65] leading-relaxed">
             Eight leaves gathered under midday sun, dried under steady pressure,
