@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 import {
   ChevronLeft,
   ChevronRight,
@@ -522,26 +523,36 @@ export default function OrbitCarousel() {
                 className={`relative ${avatarMargin} ${avatarSize} cursor-pointer group`}
                 title="Click to view full high-resolution herbarium sheet"
               >
-                <motion.img
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: 0.1 }}
-                  src={currentSpecimen.image}
-                  alt={currentSpecimen.name}
-                  onError={safeImage}
-                  className="w-full h-full rounded-full border-4 border-white object-cover shadow-xl ring-2 ring-neutral-900/10 group-hover:scale-105 group-hover:ring-neutral-900 transition-all duration-200"
-                />
+                  <motion.img
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
+                    src={currentSpecimen.image}
+                    alt={currentSpecimen.name}
+                    onError={safeImage}
+                    className="w-full h-full rounded-full border-4 border-white object-cover shadow-xl ring-2 ring-neutral-900/10 group-hover:scale-105 group-hover:ring-neutral-900 transition-all duration-200"
+                  />
 
-                {/* Status Indicator */}
-                <span className="absolute bottom-0.5 right-0.5 sm:bottom-1 sm:right-1 flex h-3.5 w-3.5 sm:h-4 sm:w-4">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3.5 w-3.5 sm:h-4 sm:w-4 bg-emerald-500 border-2 border-white shadow-xs"></span>
-                </span>
+                  {/* Case Study Button */}
+                  <Link
+                    to={`/case-study/orbit/${currentSpecimen.id}`}
+                    onClick={(e) => e.stopPropagation()}
+                    className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-[10] flex h-6 w-6 items-center justify-center rounded-full bg-white/80 hover:bg-white/90 backdrop-blur-sm text-neutral-800 hover:text-neutral-900 transition-all duration-200 pointer-events-auto"
+                  >
+                    <span className="text-xs sm:text-sm font-medium">Case</span>
+                    <span className="text-xs sm:text-sm font-medium block">Study</span>
+                  </Link>
 
-                {/* Hover overlay hint */}
-                <div className="absolute inset-0 rounded-full bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
-                  <Maximize2 size={18} className="drop-shadow-md" />
-                </div>
+                 {/* Status Indicator */}
+                 <span className="absolute bottom-0.5 right-0.5 sm:bottom-1 sm:right-1 flex h-3.5 w-3.5 sm:h-4 sm:w-4">
+                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                   <span className="relative inline-flex rounded-full h-3.5 w-3.5 sm:h-4 sm:w-4 bg-emerald-500 border-2 border-white shadow-xs"></span>
+                 </span>
+
+                 {/* Hover overlay hint */}
+                 <div className="absolute inset-0 rounded-full bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+                   <Maximize2 size={14} />
+                 </div>
               </div>
             </div>
 

@@ -13,6 +13,7 @@
 // the front, and every whole number after that is one more item turned past.
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 import soundSystem from "@/lib/sound-system";
 
 export interface WorksWheelItem {
@@ -440,32 +441,41 @@ export function WorksWheel({
                   }}
                 >
                   <span className="bg-zinc-100 shadow-black/15 relative block size-full overflow-hidden rounded-xl shadow-[0_18px_40px_-18px_rgba(0,0,0,0.25)] border border-black/5">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      draggable={false}
-                      className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    {action && item.href ? (
-                      <span className="bg-white/90 text-black pointer-events-none absolute right-3 bottom-3 flex translate-y-1 items-center gap-1 rounded-full px-2.5 py-1 text-[0.7rem] font-medium opacity-0 backdrop-blur-sm shadow-sm transition group-hover:translate-y-0 group-hover:opacity-100">
-                        <svg
-                          viewBox="0 0 12 12"
-                          className="size-2.5"
-                          aria-hidden="true"
-                        >
-                          <path
-                            d="M3 9 9 3M4 3h5v5"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1.4"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                        {action}
-                      </span>
-                    ) : null}
+                   <img
+                     src={item.image}
+                     alt={item.title}
+                     draggable={false}
+                     className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+                     loading="lazy"
+                   />
+                   {/* Case Study Button */}
+                   <Link
+                     to={`/case-study/wheel/${i + 1}`}
+                     onClick={(e) => e.stopPropagation()}
+                     className="absolute bottom-2 right-2 z-[10] flex h-6 w-6 items-center justify-center rounded-full bg-white/80 hover:bg-white/90 backdrop-blur-sm text-neutral-800 hover:text-neutral-900 transition-all duration-200 pointer-events-auto"
+                   >
+                     <span className="text-xs sm:text-sm font-medium">Case</span>
+                     <span className="text-xs sm:text-sm font-medium block">Study</span>
+                   </Link>
+                   {action && item.href ? (
+                     <span className="bg-white/90 text-black pointer-events-none absolute right-3 bottom-3 flex translate-y-1 items-center gap-1 rounded-full px-2.5 py-1 text-[0.7rem] font-medium opacity-0 backdrop-blur-sm shadow-sm transition group-hover:translate-y-0 group-hover:opacity-100">
+                       <svg
+                         viewBox="0 0 12 12"
+                         className="size-2.5"
+                         aria-hidden="true"
+                       >
+                         <path
+                           d="M3 9 9 3M4 3h5v5"
+                           fill="none"
+                           stroke="currentColor"
+                           strokeWidth="1.4"
+                           strokeLinecap="round"
+                           strokeLinejoin="round"
+                         />
+                       </svg>
+                       {action}
+                     </span>
+                   ) : null}
                   </span>
                 </Tag>
               </React.Fragment>
