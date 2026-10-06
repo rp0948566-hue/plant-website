@@ -84,7 +84,7 @@ export default function App() {
 
       {/* ── Section: 3D Works Wheel Portfolio Drum ── */}
       <section id="works-wheel-section" className="w-full relative z-20 bg-white border-t border-black/5">
-        <WorksWheel items={DEFAULT_WORKS} label="Flora '26" action="Inspect" />
+        <WorksWheel items={DEFAULT_WORKS} label="Flora '26" />
       </section>
 
       {/* ── Minimalist Closing Footer ── */}

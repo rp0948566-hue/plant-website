@@ -457,7 +457,8 @@ export function WorksWheel({
       </div>
       <div
         ref={titleRef}
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center opacity-0 px-4"
+        aria-hidden="true"
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center opacity-0 px-4 hidden"
       >
         <div
           className="font-bold tracking-tight text-black font-sans leading-none"
@@ -494,6 +495,21 @@ export function WorksWheel({
           </li>
         ))}
       </ol>
+
+      {/* Fixed corner details card: active specimen name + taxonomy stay put while the drum turns */}
+      <div className="absolute z-20 pointer-events-none left-4 bottom-20 sm:left-8 sm:bottom-8 max-w-[210px] sm:max-w-xs rounded-2xl border border-black/10 bg-white/92 backdrop-blur-md px-3.5 py-3 sm:px-4 shadow-[0_18px_40px_-18px_rgba(0,0,0,0.25)] text-left">
+        <div className="font-mono text-[10px] sm:text-[11px] tracking-[0.2em] text-neutral-500">
+          {String(active + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
+        </div>
+        <div className="font-sans font-bold text-sm sm:text-base text-black tracking-tight leading-tight mt-1">
+          {items[active]?.title}
+        </div>
+        {items[active]?.detail && (
+          <div className="font-serif italic text-xs sm:text-sm text-neutral-600 mt-0.5 leading-snug">
+            {items[active]?.detail}
+          </div>
+        )}
+      </div>
 
       {/* Mobile Active Project Pill Indicator & Touch Controls */}
       <div className="sm:hidden absolute bottom-5 inset-x-0 flex items-center justify-center pointer-events-none z-20 px-4">

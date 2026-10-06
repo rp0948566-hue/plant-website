@@ -64,7 +64,7 @@ export default function CinematicHero({ onBeginJourney }: Props) {
       </div>
 
       {/* ── Centered Hero Section (z-10 - perfectly centered with top nav clearance) ── */}
-      <main className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-24 sm:pt-28 md:pt-16 pb-10 sm:pb-14 max-w-5xl mx-auto w-full my-auto">
+      <main className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-24 sm:pt-28 md:pt-16 pb-14 sm:pb-16 max-w-5xl mx-auto w-full my-auto">
         {/* Headline with fluid responsive typography and balanced 2-line poetic structure on all devices */}
         <h1
           className="text-[2.65rem] xs:text-[3.2rem] sm:text-6xl md:text-7xl lg:text-[5.4rem] xl:text-[6.4rem] font-normal leading-[1.08] sm:leading-[1.04] tracking-[-1.2px] sm:tracking-[-2.4px] animate-fade-rise select-none"
@@ -82,7 +82,7 @@ export default function CinematicHero({ onBeginJourney }: Props) {
         </h1>
 
         {/* Pearl Hero CTA Button with optimal touch target and spacing */}
-        <div className="mt-12 sm:mt-14 md:mt-16 animate-fade-rise-delay flex items-center justify-center">
+        <div className="mt-14 sm:mt-16 md:mt-20 animate-fade-rise-delay flex items-center justify-center">
           <PearlButton
             label="Explore Leaves"
             size="sm"
