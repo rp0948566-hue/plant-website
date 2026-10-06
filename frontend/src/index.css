@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 @import "./styles/theme.css";
 
 /* Custom extra-small breakpoint: xs: targets 420px+ phones in landscape / large phones */
 @theme {
   --breakpoint-xs: 26rem;
+  --font-condensed: 'Anton', Impact, 'Arial Black', sans-serif;
 }
 
 :root {
@@ -29,6 +30,10 @@
   font-family: var(--font-sans);
 }
 
+.font-condensed {
+  font-family: var(--font-condensed);
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -39,22 +44,17 @@ html {
   scroll-behavior: smooth;
   background-color: #0E1613;
   color: #1A2621;
+  overflow-x: clip;
 }
 
 body {
   background-color: #0E1613;
   color: #1A2621;
   font-family: var(--font-sans);
-  overflow-x: hidden;
+  overflow-x: clip;
   width: 100%;
   min-height: 100vh;
-  padding: 6px;
-}
-
-@media (min-width: 640px) {
-  body {
-    padding: 10px;
-  }
+  padding: 0; /* outer inset is drawn by the GlobalShell bezel frame */
 }
 
 /* ── Global Botanical Inset Shell ─────────────────────────────────────── */
