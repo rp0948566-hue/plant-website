@@ -7,7 +7,6 @@ import {
   Leaf,
   Eye,
   Flower2,
-  Flame,
   LayoutGrid,
   type LucideIcon,
 } from "lucide-react";
@@ -27,7 +26,6 @@ export const defaultNavItems: NavItem[] = [
   { label: "Story", icon: Leaf, targetId: "minimalism-section" },
   { label: "Gallery", icon: Eye, targetId: "scroll-animation-section" },
   { label: "Flora", icon: Flower2, targetId: "orbit-carousel-section" },
-  { label: "Spirit", icon: Flame, targetId: "tiger-tear-section" },
   { label: "Works", icon: LayoutGrid, targetId: "works-wheel-section" },
 ];
 

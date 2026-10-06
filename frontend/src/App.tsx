@@ -1,19 +1,15 @@
 import { useState, useEffect } from 'react';
 import ReactLenis from 'lenis/react';
 import GlobalShell from './components/GlobalShell';
-import IntroAnimation from './components/IntroAnimation';
 import CinematicHero from './components/CinematicHero';
 import MinimalismSection from './components/MinimalismSection';
 import { Skiper31 } from './components/ui/text-scroll-animation';
 import OrbitCarousel from './components/ui/orbiting-carousel-with-animated-icons';
-import TigerTearReveal from './components/ui/tiger-tear-reveal';
 import WorksWheel, { DEFAULT_WORKS } from './components/ui/works-wheel';
 import BottomNavBar from './components/ui/bottom-nav-bar';
 import { preloadBotanicalImages } from './lib/api';
 
 export default function App() {
-  const [introFinished, setIntroFinished] = useState(false);
-  const [overlayVisible, setOverlayVisible] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(1);
   const totalSlides = 4;
 
@@ -21,14 +17,6 @@ export default function App() {
   useEffect(() => {
     preloadBotanicalImages();
   }, []);
-
-  // ── Intro Animation completion handler ────────────────────────────────────
-  const handleIntroComplete = () => {
-    setIntroFinished(true);
-    setTimeout(() => {
-      setOverlayVisible(false);
-    }, 600);
-  };
 
   // ── Slide Handlers ─────────────────────────────────────────────────────────
   const handleNextSlide = () => {
@@ -94,11 +82,6 @@ export default function App() {
         <OrbitCarousel />
       </section>
 
-      {/* ── Section: Tiger Tear Reveal ── */}
-      <section id="tiger-tear-section" className="w-full relative z-20">
-        <TigerTearReveal />
-      </section>
-
       {/* ── Section: 3D Works Wheel Portfolio Drum ── */}
       <section id="works-wheel-section" className="w-full relative z-20 bg-white border-t border-black/5">
         <WorksWheel items={DEFAULT_WORKS} label="Flora '26" action="Inspect" />
@@ -108,19 +91,6 @@ export default function App() {
       <footer className="w-full py-16 bg-[#f2f1ee] border-t border-[#e2e0dc] text-center text-xs tracking-[0.25em] uppercase text-[#777777] relative z-20">
         <p className="font-sans font-medium">© {new Date().getFullYear()} Aethera Studios • All Rights Reserved</p>
       </footer>
-
-      {/* ── Opening Loading Animation Overlay (Plays ONCE on enter, then vanishes) ── */}
-      {overlayVisible && (
-        <div
-          className="fixed inset-0 z-50 transition-opacity duration-600 ease-out"
-          style={{
-            opacity: introFinished ? 0 : 1,
-            pointerEvents: introFinished ? 'none' : 'auto',
-          }}
-        >
-          <IntroAnimation onComplete={handleIntroComplete} />
-        </div>
-      )}
       </div>
     </GlobalShell>
     </ReactLenis>
