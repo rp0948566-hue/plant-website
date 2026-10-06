@@ -124,7 +124,7 @@ const subtitleCenter = Math.floor(subtitleChars.length / 2);
 const name1 = "Team";
 const name1Chars = name1.split("");
 
-const name2 = "& Avengers";
+const name2 = "Avengers";
 const name2Chars = name2.split("");
 
 const Skiper31 = () => {
@@ -194,7 +194,7 @@ const Skiper31 = () => {
             ))}
           </div>
 
-          {/* Half 2: & AVENGERS (Slides in smoothly from RIGHT side) */}
+          {/* Half 2: AVENGERS (Slides in smoothly from RIGHT side) */}
           <div className="flex items-center justify-center flex-nowrap whitespace-nowrap mt-1 xs:mt-2 sm:mt-3">
             {name2Chars.map((char, index) => (
               <RightSlideCharacter
