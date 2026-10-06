@@ -484,7 +484,7 @@ export default function OrbitCarousel() {
           </span>
         </div>
         <h2 className="text-2xl sm:text-4xl md:text-5xl font-serif font-medium tracking-tight text-neutral-900 leading-tight">
-          In-Situ Field Orbit
+          Geotag Photos
         </h2>
         <p className="text-xs sm:text-sm text-neutral-500 mt-1.5 sm:mt-2.5 max-w-md mx-auto">
           Live geotagged captures from the hostel survey — every frame stamped with location, date and sky. Tap any bubble or inspect for the full photograph.
