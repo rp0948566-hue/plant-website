@@ -159,7 +159,7 @@ export function WorksWheel({
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  const activeScrollDistance = isMobile ? "220vh" : scrollDistance;
+  const activeScrollDistance = isMobile ? "180vh" : scrollDistance;
 
   React.useEffect(() => {
     const el = stageRef.current;

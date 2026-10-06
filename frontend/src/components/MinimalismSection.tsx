@@ -7,14 +7,14 @@ interface Props {
 
 export default function MinimalismSection(_props: Props) {
   return (
-    <section className="relative w-full min-h-screen bg-transparent text-black flex flex-col justify-between selection:bg-black selection:text-white overflow-hidden">
+    <section className="relative w-full min-h-[80vh] sm:min-h-screen bg-transparent text-black flex flex-col justify-between selection:bg-black selection:text-white overflow-hidden">
       
       {/* ── Left Side Decorative Eucalyptus Leaf Branch (100% Fully Visible, No Cutoff) ── */}
       <div className="absolute left-0 top-0 bottom-0 z-0 pointer-events-none flex items-center">
         <img
           src="/left.png"
           alt="Eucalyptus Left Branch"
-          className="h-[70%] sm:h-[84%] md:h-[90%] w-auto object-contain object-left opacity-100 select-none"
+          className="h-[42%] sm:h-[84%] md:h-[90%] w-auto object-contain object-left opacity-100 select-none"
           onError={(e) => {
             (e.target as HTMLImageElement).src = '/images/eucalyptus_left.png';
           }}
@@ -33,9 +33,8 @@ export default function MinimalismSection(_props: Props) {
         />
       </div>
 
-      {/* ── Main Content Area (Exact Dead Center: Not at left, not at right, perfectly in the middle) ──── */}
-      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-4 sm:px-12 pointer-events-none">
-        <div className="max-w-3xl flex flex-col items-center text-center pointer-events-auto">
+      {/* ── Main Content Area (in-flow centered so short screens never clip) ──── */}
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-12 py-14 sm:py-28">
           {/* Interlude headline: eucalyptus-branch showcase with herbarium wording */}
           <p className="text-[11px] sm:text-xs font-semibold tracking-[0.3em] uppercase text-[#3F4E49] mb-4">
             From Field to Sheet
@@ -51,7 +50,6 @@ export default function MinimalismSection(_props: Props) {
             Eight leaves gathered under midday sun, dried under steady pressure,
             and mounted for study — no shortcuts, only craft.
           </p>
-        </div>
       </div>
 
     </section>

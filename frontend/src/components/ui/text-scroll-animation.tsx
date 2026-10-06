@@ -117,14 +117,14 @@ const TopFadeCharacter = ({
   );
 };
 
-const subtitle = "Represented by:";
+const subtitle = "Presented by:";
 const subtitleChars = subtitle.split("");
 const subtitleCenter = Math.floor(subtitleChars.length / 2);
 
-const name1 = "Surya Pratap";
+const name1 = "Team";
 const name1Chars = name1.split("");
 
-const name2 = "& Vansh Pratap";
+const name2 = "& Avengers";
 const name2Chars = name2.split("");
 
 const Skiper31 = () => {
@@ -152,9 +152,9 @@ const Skiper31 = () => {
       {/* 3D Kinetic Text Section: Pure white background, snug balanced height */}
       <div
         ref={targetRef}
-        className="relative box-border flex min-h-[65vh] sm:min-h-[75vh] flex-col items-center justify-center gap-3 sm:gap-6 overflow-hidden bg-white pt-20 sm:pt-28 pb-8 sm:pb-12 px-4"
+        className="relative box-border flex min-h-[54vh] sm:min-h-[75vh] flex-col items-center justify-center gap-3 sm:gap-6 overflow-hidden bg-white pt-12 sm:pt-28 pb-8 sm:pb-12 px-4"
       >
-        {/* Subtitle: "Represented by:" in clean modern sans-serif */}
+        {/* Subtitle: "Presented by:" in clean modern sans-serif */}
         <div
           className="flex items-center justify-center tracking-[0.25em] text-xs sm:text-base md:text-lg font-semibold uppercase text-[#6F6F6F] font-sans"
           style={{ perspective: "600px" }}
@@ -179,7 +179,7 @@ const Skiper31 = () => {
             fontFamily: "var(--font-condensed)",
           }}
         >
-          {/* Half 1: SURYA PRATAP (Slides in smoothly from LEFT side) */}
+          {/* Half 1: TEAM (Slides in smoothly from LEFT side) */}
           <div className="flex items-center justify-center flex-nowrap whitespace-nowrap">
             {name1Chars.map((char, index) => (
               <LeftSlideCharacter
@@ -194,7 +194,7 @@ const Skiper31 = () => {
             ))}
           </div>
 
-          {/* Half 2: & VANSH PRATAP (Slides in smoothly from RIGHT side) */}
+          {/* Half 2: & AVENGERS (Slides in smoothly from RIGHT side) */}
           <div className="flex items-center justify-center flex-nowrap whitespace-nowrap mt-1 xs:mt-2 sm:mt-3">
             {name2Chars.map((char, index) => (
               <RightSlideCharacter

@@ -469,7 +469,7 @@ export default function OrbitCarousel() {
   return (
     <div
       ref={containerRef}
-      className="flex flex-col items-center justify-center pt-4 pb-12 sm:pt-8 sm:pb-16 px-2 sm:px-6 relative min-h-[580px] xs:min-h-[660px] sm:min-h-[740px] md:min-h-[840px] lg:min-h-[960px] xl:min-h-[1020px] bg-white transition-colors duration-300 w-full overflow-hidden"
+      className="flex flex-col items-center justify-center pt-2 pb-8 sm:pt-8 sm:pb-16 px-2 sm:px-6 relative min-h-[540px] xs:min-h-[660px] sm:min-h-[740px] md:min-h-[840px] lg:min-h-[960px] xl:min-h-[1020px] bg-white transition-colors duration-300 w-full overflow-hidden"
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
       onTouchStart={handleTouchStart}
