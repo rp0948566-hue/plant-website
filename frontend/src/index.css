@@ -1,10 +1,45 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 @import "./styles/theme.css";
 
 :root {
   --font-serif: 'Instrument Serif', Georgia, serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-condensed: 'Anton', Impact, 'Bebas Neue', 'Arial Black', sans-serif;
+  --background: #ffffff;
+  --foreground: #09090b;
+  --card: #ffffff;
+  --card-foreground: #09090b;
+  --border: #e4e4e7;
+  --primary: #09090b;
+  --primary-foreground: #ffffff;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --sidebar-border: rgba(0, 0, 0, 0.08);
+}
+
+.dark {
+  --background: #09090b;
+  --foreground: #fafafa;
+  --card: #18181b;
+  --card-foreground: #fafafa;
+  --border: #27272a;
+  --primary: #fafafa;
+  --primary-foreground: #18181b;
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;
+  --sidebar-border: rgba(255, 255, 255, 0.12);
+}
+
+@theme {
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-sidebar-border: var(--sidebar-border);
 }
 
 .font-serif {
@@ -15,6 +50,10 @@
   font-family: var(--font-sans);
 }
 
+.font-condensed {
+  font-family: var(--font-condensed);
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -23,29 +62,43 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #ffffff;
+  background-color: #0c0c0e;
+  overflow-x: clip;
 }
 
 body {
-  background-color: #ffffff;
+  background-color: #0c0c0e;
   color: #000000;
   font-family: var(--font-sans);
-  overflow-x: hidden;
+  overflow-x: clip;
   width: 100%;
   min-height: 100vh;
   padding: 0;
 }
 
-/* ── Full-Width Application Shell ─────────────────────────────────────── */
+/* ── Global Outer-Edge / Inset Shell ─────────────────────────────────────── */
+.global-inset-frame {
+  position: fixed;
+  inset: 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 0 0 100vmax #0c0c0e;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@media (min-width: 640px) {
+  .global-inset-frame {
+    inset: 10px;
+    border-radius: 14px;
+  }
+}
+
 .global-inset-shell {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  border-radius: 0;
-  border: none;
-  overflow: hidden;
   background-color: #ffffff;
-  box-shadow: none;
 }
 
 /* ── Explicit Layout & Button Rules matching Image 2 exactly ── */
@@ -140,3 +193,35 @@ body {
 .hero-cta-btn:hover {
   transform: scale(1.03);
 }
+
+/* ── Sleek Professional Scrollbar ────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.22);
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.52);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.26) transparent;
+}
+

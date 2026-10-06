@@ -5,3 +5,12 @@ dist-ssr/
 .DS_Store
 .env
 .env.local
+
+# Rust build artifacts
+target/
+backend/target/
+
+# Scratch test directory
+scratch/
+ponytail/
+frontend/dist/

@@ -1,18 +1,26 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
+import ReactLenis from 'lenis/react';
+import GlobalShell from './components/GlobalShell';
 import IntroAnimation from './components/IntroAnimation';
-import HeaderNav from './components/HeaderNav';
 import CinematicHero from './components/CinematicHero';
 import MinimalismSection from './components/MinimalismSection';
+import { Skiper31 } from './components/ui/text-scroll-animation';
+import OrbitCarousel from './components/ui/orbiting-carousel-with-animated-icons';
+import TigerTearReveal from './components/ui/tiger-tear-reveal';
+import WorksWheel, { DEFAULT_WORKS } from './components/ui/works-wheel';
+import BottomNavBar from './components/ui/bottom-nav-bar';
+import { preloadBotanicalImages } from './lib/api';
 
 export default function App() {
   const [introFinished, setIntroFinished] = useState(false);
   const [overlayVisible, setOverlayVisible] = useState(true);
-  const [activeTab, setActiveTab] = useState('Home');
   const [currentSlide, setCurrentSlide] = useState(1);
   const totalSlides = 4;
 
-  const section1Ref = useRef<HTMLDivElement>(null);
-  const section2Ref = useRef<HTMLDivElement>(null);
+  // ── Preload botanical archival imagery into browser memory ────────────────
+  useEffect(() => {
+    preloadBotanicalImages();
+  }, []);
 
   // ── Intro Animation completion handler ────────────────────────────────────
   const handleIntroComplete = () => {
@@ -22,74 +30,84 @@ export default function App() {
     }, 600);
   };
 
-  // ── Smooth Scroll Navigation Handlers ──────────────────────────────────────
-  const scrollToSection = (sectionIndex: number) => {
-    if (sectionIndex === 1 && section1Ref.current) {
-      section1Ref.current.scrollIntoView({ behavior: 'smooth' });
-    } else if (sectionIndex >= 2 && section2Ref.current) {
-      section2Ref.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
+  // ── Slide Handlers ─────────────────────────────────────────────────────────
   const handleNextSlide = () => {
-    const next = currentSlide >= totalSlides ? 1 : currentSlide + 1;
-    scrollToSection(next);
+    setCurrentSlide((prev) => (prev >= totalSlides ? 1 : prev + 1));
   };
 
   const handlePrevSlide = () => {
-    const prev = currentSlide <= 1 ? totalSlides : currentSlide - 1;
-    scrollToSection(prev);
+    setCurrentSlide((prev) => (prev <= 1 ? totalSlides : prev - 1));
   };
 
-  // ── Intersection Observer to update active tab & slide counter on scroll ──
-  useEffect(() => {
-    if (!introFinished) return;
-
-    const handleScroll = () => {
-      const scrollPos = window.scrollY;
-      const vh = window.innerHeight;
-
-      if (scrollPos < vh * 0.5) {
-        setCurrentSlide(1);
-        setActiveTab('Home');
-      } else {
-        setCurrentSlide(2);
-        setActiveTab('Studio');
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [introFinished]);
-
   return (
-    <div className="w-full min-h-screen bg-white text-black selection:bg-black selection:text-white">
-      {/* ── Fixed Top Header Navigation (Aethera® | Home Studio About Journal Reach Us | Begin Journey) ── */}
-      {introFinished && (
-        <HeaderNav
-          activeTab={activeTab}
-          onTabChange={(tab) => {
-            setActiveTab(tab);
-            if (tab === 'Home') scrollToSection(1);
-            else scrollToSection(2);
+    <ReactLenis root options={{ lerp: 0.1, duration: 1.0, smoothWheel: true, wheelMultiplier: 1.1, touchMultiplier: 1.2 }}>
+      <GlobalShell>
+        <div className="w-full min-h-screen bg-white text-black selection:bg-black selection:text-white relative overflow-x-clip flex flex-col">
+          {/* ── Figma-style Dynamic Floating Top Navigation Bar ── */}
+          <BottomNavBar
+            stickyTop
+            autoHideOnScroll
+            onItemSelect={(item) => {
+              const targetId = item.targetId;
+              if (targetId) {
+                const el = document.getElementById(targetId);
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+          />
+
+          {/* ── Top Hero: Cinematic Hero Section with Looping Video Background ── */}
+          <section id="hero-top" className="w-full min-h-screen relative">
+        <CinematicHero
+          onBeginJourney={() => {
+            const el = document.getElementById('minimalism-section');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
+          onNavigateTab={(tab) => {
+            if (tab !== 'Home') {
+              const el = document.getElementById('minimalism-section');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            } else {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
           }}
         />
-      )}
+      </section>
 
-      {/* ── Section 1: Cinematic Video Hero Section ────────────────────────── */}
-      <div ref={section1Ref} className="w-full relative">
-        <CinematicHero />
-      </div>
-
-      {/* ── Section 2: Minimalism is Freedom Section ──────────────────────── */}
-      <div ref={section2Ref} className="w-full relative">
+      {/* ── Section: Maximalism is a Power ── */}
+      <section id="minimalism-section" className="w-full min-h-screen relative flex-1 flex flex-col justify-between">
         <MinimalismSection
           currentSlide={currentSlide}
           totalSlides={totalSlides}
           onNextSlide={handleNextSlide}
           onPrevSlide={handlePrevSlide}
         />
-      </div>
+      </section>
+
+      {/* ── Section: 3D Kinetic Text Convergence (Half from left, half from right) ── */}
+      <section id="scroll-animation-section" className="w-full relative z-20">
+        <Skiper31 />
+      </section>
+
+      {/* ── Section: Orbiting Botanical Herbarium Section ── */}
+      <section id="orbit-carousel-section" className="w-full relative z-20 py-6 sm:py-12 bg-white overflow-hidden">
+        <OrbitCarousel />
+      </section>
+
+      {/* ── Section: Tiger Tear Reveal ── */}
+      <section id="tiger-tear-section" className="w-full relative z-20">
+        <TigerTearReveal />
+      </section>
+
+      {/* ── Section: 3D Works Wheel Portfolio Drum ── */}
+      <section id="works-wheel-section" className="w-full relative z-20 bg-white border-t border-black/5">
+        <WorksWheel items={DEFAULT_WORKS} label="Flora '26" action="Inspect" />
+      </section>
+
+      {/* ── Minimalist Closing Footer ── */}
+      <footer className="w-full py-16 bg-[#f2f1ee] border-t border-[#e2e0dc] text-center text-xs tracking-[0.25em] uppercase text-[#777777] relative z-20">
+        <p className="font-sans font-medium">© {new Date().getFullYear()} Aethera Studios • All Rights Reserved</p>
+      </footer>
 
       {/* ── Opening Loading Animation Overlay (Plays ONCE on enter, then vanishes) ── */}
       {overlayVisible && (
@@ -103,6 +121,8 @@ export default function App() {
           <IntroAnimation onComplete={handleIntroComplete} />
         </div>
       )}
-    </div>
+      </div>
+    </GlobalShell>
+    </ReactLenis>
   );
 }

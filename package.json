@@ -1,0 +1,28 @@
+{
+  "name": "aethera-botanical-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Aethera Botanical Archive - Next-Generation Botanical Experience with Ultra-Fast Rust Backend and 1-Click Vercel Deployment",
+  "scripts": {
+    "dev": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend install && npm --prefix frontend run build",
+    "start": "npm --prefix frontend run preview",
+    "lint": "npm --prefix frontend run lint",
+    "rust:check": "cargo check --manifest-path backend/Cargo.toml",
+    "rust:build": "cargo build --release --manifest-path backend/Cargo.toml",
+    "rust:run": "cargo run --release --manifest-path backend/Cargo.toml"
+  },
+  "keywords": [
+    "botanical",
+    "archive",
+    "rust",
+    "axum",
+    "tokio",
+    "vite",
+    "react",
+    "tailwind",
+    "vercel"
+  ],
+  "author": "Aethera Studios",
+  "license": "MIT"
+}
