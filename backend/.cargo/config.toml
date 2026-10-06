@@ -1,0 +1,5 @@
+[build]
+target = "x86_64-pc-windows-gnu"
+
+[env]
+PATH = { value = "C:\\Ruby34-x64\\msys64\\ucrt64\\bin", relative = false }
