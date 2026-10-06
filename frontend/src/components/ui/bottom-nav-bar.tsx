@@ -161,13 +161,13 @@ export function BottomNavBar({
       role="navigation"
       aria-label="Navigation"
       className={cn(
-        "bg-white/94 dark:bg-card/95 backdrop-blur-2xl border border-black/12 dark:border-border rounded-full flex items-center px-1.5 py-1 sm:px-3 sm:py-2 md:px-4 md:py-2.5 shadow-[0_18px_50px_-8px_rgba(0,0,0,0.18)] max-w-[96vw] h-[52px] sm:h-[62px] md:h-[68px] lg:h-[72px] select-none transition-shadow duration-300 z-50",
+        "bg-white/94 dark:bg-card/95 backdrop-blur-2xl border border-black/12 dark:border-border rounded-full flex items-center px-1 py-1 sm:px-2 sm:py-1.5 md:px-3 md:py-2 shadow-[0_18px_50px_-8px_rgba(0,0,0,0.18)] max-w-[94vw] h-[48px] sm:h-[58px] md:h-[64px] select-none transition-shadow duration-300 z-50",
         stickyBottom && "fixed left-1/2 bottom-4 sm:bottom-6 z-50 w-fit",
         stickyTop && "fixed left-1/2 top-3 sm:top-5 md:top-6 z-50 w-fit",
         className,
       )}
     >
-      <div className="flex items-center space-x-1 sm:space-x-1.5 md:space-x-2 lg:space-x-2.5 overflow-x-auto no-scrollbar py-0.5 px-0.5 sm:px-1">
+      <div className="flex items-center space-x-0.5 sm:space-x-1 md:space-x-1.5 overflow-x-auto no-scrollbar py-0.5 px-0.5">
         {/* Brand Logo Button */}
         <motion.button
           type="button"
@@ -180,18 +180,18 @@ export function BottomNavBar({
             setActiveIndex(0);
           }}
           onMouseEnter={() => soundSystem.playNavHover()}
-          aria-label="Aethera Home"
-          className="flex items-center gap-1.5 sm:gap-2 pl-0.5 pr-1.5 sm:pr-2.5 py-1 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors cursor-pointer shrink-0 focus:outline-none"
+          aria-label="Leaf Herbarium Home"
+          className="flex items-center gap-1.5 sm:gap-2 pl-0.5 pr-1.5 sm:pr-2 py-1 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors cursor-pointer shrink-0 focus:outline-none"
         >
-          <div className="relative w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full overflow-hidden bg-black border border-black/15 shadow-sm flex items-center justify-center p-0.5 transition-transform duration-200">
+          <div className="relative w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 rounded-full overflow-hidden bg-black border border-black/15 shadow-sm flex items-center justify-center p-0.5 transition-transform duration-200">
             <img
               src="/images/LOGO.png"
-              alt="Aethera Emblem"
+              alt="Leaf Herbarium Emblem"
               className="w-full h-full object-contain filter drop-shadow"
             />
           </div>
           <span className="hidden md:inline font-serif font-bold text-xs sm:text-sm tracking-wider text-black dark:text-white uppercase select-none">
-            Aethera
+            Leaf Herbarium
           </span>
         </motion.button>
 
@@ -210,7 +210,7 @@ export function BottomNavBar({
               transition={{ type: "spring", stiffness: 420, damping: 26 }}
               onMouseEnter={() => soundSystem.playNavHover()}
               className={cn(
-                "flex items-center gap-0 px-2 sm:px-3.5 md:px-4.5 lg:px-5 py-2 rounded-full transition-colors duration-200 relative h-9 sm:h-11 md:h-11 min-w-[38px] sm:min-w-[48px] md:min-w-[58px] lg:min-w-[66px] cursor-pointer shrink-0",
+                "flex items-center gap-0 px-1.5 sm:px-3 md:px-4 py-2 rounded-full transition-colors duration-200 relative h-8 sm:h-10 md:h-10 min-w-[34px] sm:min-w-[44px] md:min-w-[52px] cursor-pointer shrink-0",
                 isActive
                   ? "text-black dark:text-primary font-semibold"
                   : "bg-transparent text-neutral-500 hover:text-black dark:text-muted-foreground hover:bg-black/5 dark:hover:bg-muted font-normal",

@@ -74,17 +74,17 @@ export default function CinematicHero({ onBeginJourney }: Props) {
           }}
         >
           <span className="block">
-            Beyond <span className="italic text-[#6F6F6F]">silence,</span>
+            Pressed <span className="italic text-[#6F6F6F]">leaves,</span>
           </span>
           <span className="block mt-0.5 sm:mt-1 md:mt-1.5">
-            we build <span className="italic text-[#6F6F6F]">the eternal.</span>
+            living <span className="italic text-[#6F6F6F]">proof.</span>
           </span>
         </h1>
 
         {/* Pearl Hero CTA Button with optimal touch target and spacing */}
         <div className="mt-8 sm:mt-10 md:mt-12 animate-fade-rise-delay flex items-center justify-center">
           <PearlButton
-            label="Begin Journey"
+            label="Explore Leaves"
             size="sm"
             onClick={handleAction}
             onPointerEnter={() => soundSystem.playButtonHover()}

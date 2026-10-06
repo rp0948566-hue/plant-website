@@ -89,7 +89,7 @@ export default function App() {
 
       {/* ── Minimalist Closing Footer ── */}
       <footer className="w-full py-16 bg-[#f2f1ee] border-t border-[#e2e0dc] text-center text-xs tracking-[0.25em] uppercase text-[#777777] relative z-20">
-        <p className="font-sans font-medium">© {new Date().getFullYear()} Aethera Studios • All Rights Reserved</p>
+        <p className="font-sans font-medium">© {new Date().getFullYear()} Leaf Herbarium • Botanical Fieldwork Archive</p>
       </footer>
       </div>
     </GlobalShell>

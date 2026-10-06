@@ -17,7 +17,7 @@ import {
 import soundSystem from "@/lib/sound-system";
 import { useLenis } from "lenis/react";
 
-// --- Botanical Herbarium Specimen Dataset (All 9 Images from public/images/IMAGE) ---
+// --- In-Situ Field Specimen Dataset (All 9 Geotagged Photos from public/images/END) ---
 export interface BotanicalSpecimen {
   id: number;
   name: string;
@@ -32,102 +32,102 @@ export interface BotanicalSpecimen {
 export const botanicalSpecimens: BotanicalSpecimen[] = [
   {
     id: 1,
-    name: "Gardenia (Gandharaj)",
-    scientificName: "Gardenia jasminoides",
-    family: "Rubiaceae",
-    category: "Fragrant Ornamental Shrub",
+    name: "Sadabahar (Periwinkle)",
+    scientificName: "Catharanthus roseus",
+    family: "Apocynaceae",
+    category: "Everlasting Medicinal Bloom",
     sheetNumber: "HERB-01",
     description:
-      "Distinguished by intensely fragrant porcelain-white blooms and lustrous, dark-green coriaceous leaves. Celebrated across classical botany and ceremonial perfumery for its calming, meditative essence.",
-    image: "/images/IMAGE/0e755a6a-649e-4c15-a5cf-011359c928fb.jpg",
+      "Sunlit hostel-bed specimen with glossy oval leaves and white salverform blooms, photographed live in the field.",
+    image: "/images/END/569dbf58-cbb8-4ecd-b27c-c980345f9d55.jpg",
   },
   {
     id: 2,
-    name: "Neem Tree",
-    scientificName: "Azadirachta indica",
-    family: "Meliaceae",
-    category: "Sacred Medicinal Flora",
-    sheetNumber: "HERB-02",
-    description:
-      "Revered across ancient botanical pharmacopeias featuring serrated pinnate leaflets. Highly prized for natural antibacterial, purifying, and cellular regenerative botanical compounds.",
-    image: "/images/IMAGE/1528e485-40dd-4482-a081-cc24ca87f081.jpg",
-  },
-  {
-    id: 3,
     name: "Crown of Thorns",
     scientificName: "Euphorbia milii",
     family: "Euphorbiaceae",
     category: "Succulent Flowering Shrub",
-    sheetNumber: "HERB-03",
+    sheetNumber: "HERB-02",
     description:
-      "A resilient spinescent succulent displaying stout ribbed stems with protective thorns, crowned by bright emerald foliage and vivid scarlet petaloid cyathia.",
-    image: "/images/IMAGE/2446ea63-3b36-4f8b-b00c-fa218e1fec3d.jpg",
+      "Spinescent succulent documented in-situ, stout ribbed stems crowned with vivid petaloid cyathia.",
+    image: "/images/END/5c64518f-6b46-4ee8-9cd3-3dde2be6c904.jpg",
   },
   {
-    id: 4,
-    name: "Madagascar Periwinkle",
-    scientificName: "Catharanthus roseus",
-    family: "Apocynaceae",
-    category: "Enduring Medicinal Perennial",
-    sheetNumber: "HERB-04",
-    description:
-      "Evergreen herbaceous subshrub with glossy oval leaves and symmetrical salverform petals. Renowned in modern medicine as the primary source of life-saving vinca alkaloids.",
-    image: "/images/IMAGE/27cdd2d7-6403-4ff7-999e-8e32466d461a.jpg",
-  },
-  {
-    id: 5,
-    name: "Hibiscus (China Rose)",
+    id: 3,
+    name: "China Rose (Hibiscus)",
     scientificName: "Hibiscus rosa-sinensis",
     family: "Malvaceae",
     category: "Tropical Flowering Shrub",
-    sheetNumber: "HERB-05",
+    sheetNumber: "HERB-03",
     description:
-      "A magnificent tropical botanical specimen boasting flared crimson corollas and an iconic elongated staminal column. Cherished as a sacred offering of devotion and vitality.",
-    image: "/images/IMAGE/280d8781-19fb-4dbd-a1e4-a3598018638a.jpg",
+      "Broad serrated foliage photographed on the shrub before pressing, showing the living leaf architecture.",
+    image: "/images/END/665811c0-3bca-4d39-9ec6-c27bfb8ca0d9.jpg",
   },
   {
-    id: 6,
-    name: "Chinese Banyan",
-    scientificName: "Ficus microcarpa",
-    family: "Moraceae",
-    category: "Canopy Fig / Living Bonsai",
-    sheetNumber: "HERB-06",
-    description:
-      "An enduring specimen featuring thick coriaceous leaves and sculptural aerial prop roots that anchor ancient canopies. An eternal symbol of rootedness and perseverance.",
-    image: "/images/IMAGE/432f6c47-bcd3-404e-905e-3f87d97aa987.jpg",
-  },
-  {
-    id: 7,
-    name: "Bougainvillea (Paper Flower)",
-    scientificName: "Bougainvillea spectabilis",
-    family: "Nyctaginaceae",
-    category: "Architectural Woody Climber",
-    sheetNumber: "HERB-07",
-    description:
-      "Thorny vigorous climber adorned with vivid paper-thin chartaceous bracts surrounding tiny cream tubular florets. A sun-drenched architectural drapery of timeless beauty.",
-    image: "/images/IMAGE/94713c19-0267-4f93-bb37-e96a1d1f3335.jpg",
-  },
-  {
-    id: 8,
+    id: 4,
     name: "Marigold (Genda)",
     scientificName: "Tagetes erecta",
     family: "Asteraceae",
     category: "Aromatic Solar Bloom",
+    sheetNumber: "HERB-04",
+    description:
+      "Feathery pinnate foliage captured in the nursery bed, rich with glandular aromatic oils.",
+    image: "/images/END/6975852e-1209-49ff-a0c1-71c4a0184106.jpg",
+  },
+  {
+    id: 5,
+    name: "Bougainvillea",
+    scientificName: "Bougainvillea spectabilis",
+    family: "Nyctaginaceae",
+    category: "Architectural Woody Climber",
+    sheetNumber: "HERB-05",
+    description:
+      "Paper-thin bracts and ovate leaves recorded on the climber during the midday collection walk.",
+    image: "/images/END/7e10ff4b-c94f-45c8-aa84-9724c221a934.jpg",
+  },
+  {
+    id: 6,
+    name: "Gandharaj (Gardenia)",
+    scientificName: "Gardenia jasminoides",
+    family: "Rubiaceae",
+    category: "Fragrant Ornamental Shrub",
+    sheetNumber: "HERB-06",
+    description:
+      "Lustrous dark-green foliage verified on the shrub, thriving in the humid hostel garden bed.",
+    image: "/images/END/825e0a0e-15e2-485a-90f9-30202500c621.jpg",
+  },
+  {
+    id: 7,
+    name: "Yellow Elder (Tecoma)",
+    scientificName: "Tecoma stans",
+    family: "Bignoniaceae",
+    category: "Upright Flowering Shrub",
+    sheetNumber: "HERB-07",
+    description:
+      "Pinnate compound leaves observed in the courtyard collection during peak sunlight hours.",
+    image: "/images/END/c039281d-b13a-40fb-8861-0762db9d0fc9.jpg",
+  },
+  {
+    id: 8,
+    name: "Chinese Banyan (Ficus)",
+    scientificName: "Ficus microcarpa",
+    family: "Moraceae",
+    category: "Canopy Fig / Living Bonsai",
     sheetNumber: "HERB-08",
     description:
-      "Intensely aromatic composite bloom featuring ruffled golden-orange floral globes. Ancient ritual flora rich in natural carotenoid pigments, radiating warmth and celebration.",
-    image: "/images/IMAGE/ea3b6b18-374b-400c-9762-58214325b0bc.jpg",
+      "Leathery oval canopy leaves documented on the terrace pots before specimen harvest.",
+    image: "/images/END/d16f7345-6979-4eff-ba85-3f6c14223fa7.jpg",
   },
   {
     id: 9,
-    name: "Classic Rose",
+    name: "Classic Rose (Gulab)",
     scientificName: "Rosa damascena",
     family: "Rosaceae",
     category: "Aromatic Perennial Flora",
     sheetNumber: "HERB-09",
     description:
-      "The quintessential archival rose specimen with serrate leaflets and delicate multi-layered petals harvested for essential attar oils, celebrated in botanical poetry for centuries.",
-    image: "/images/IMAGE/f5dae4b8-cb5c-424a-bb7f-f334581df158.jpg",
+      "Serrated five-leaflet sprays photographed on the thorny stems in natural daylight.",
+    image: "/images/END/dec0e244-7d8e-4480-9350-a4ea73b63886.jpg",
   },
 ];
 

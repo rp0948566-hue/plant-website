@@ -32,6 +32,7 @@
 }
 
 @theme {
+  --breakpoint-xs: 26rem;
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-border: var(--border);

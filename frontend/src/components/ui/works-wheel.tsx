@@ -512,51 +512,51 @@ export function WorksWheel({
   );
 }
 
-// Curated botanical portfolio items from public/images/END
+// Curated pressed-sheet portfolio items from public/images/IMAGE
 export const DEFAULT_WORKS: WorksWheelItem[] = [
   {
-    title: "Sadabahar (Periwinkle)",
-    image: "/images/END/569dbf58-cbb8-4ecd-b27c-c980345f9d55.jpg",
-    href: "#periwinkle",
-  },
-  {
-    title: "Crown of Thorns",
-    image: "/images/END/5c64518f-6b46-4ee8-9cd3-3dde2be6c904.jpg",
-    href: "#crown-of-thorns",
-  },
-  {
-    title: "China Rose (Hibiscus)",
-    image: "/images/END/665811c0-3bca-4d39-9ec6-c27bfb8ca0d9.jpg",
-    href: "#hibiscus",
-  },
-  {
-    title: "Marigold (Genda)",
-    image: "/images/END/6975852e-1209-49ff-a0c1-71c4a0184106.jpg",
-    href: "#marigold",
-  },
-  {
-    title: "Bougainvillea",
-    image: "/images/END/7e10ff4b-c94f-45c8-aa84-9724c221a934.jpg",
-    href: "#bougainvillea",
-  },
-  {
-    title: "Gandharaj (Gardenia)",
-    image: "/images/END/825e0a0e-15e2-485a-90f9-30202500c621.jpg",
+    title: "Gardenia (Gandharaj)",
+    image: "/images/IMAGE/0e755a6a-649e-4c15-a5cf-011359c928fb.jpg",
     href: "#gardenia",
   },
   {
-    title: "Yellow Elder (Tecoma)",
-    image: "/images/END/c039281d-b13a-40fb-8861-0762db9d0fc9.jpg",
-    href: "#tecoma",
+    title: "Neem Tree",
+    image: "/images/IMAGE/1528e485-40dd-4482-a081-cc24ca87f081.jpg",
+    href: "#neem",
   },
   {
-    title: "Chinese Banyan (Ficus)",
-    image: "/images/END/d16f7345-6979-4eff-ba85-3f6c14223fa7.jpg",
-    href: "#ficus",
+    title: "Crown of Thorns",
+    image: "/images/IMAGE/2446ea63-3b36-4f8b-b00c-fa218e1fec3d.jpg",
+    href: "#crown-of-thorns",
   },
   {
-    title: "Classic Rose (Gulab)",
-    image: "/images/END/dec0e244-7d8e-4480-9350-a4ea73b63886.jpg",
+    title: "Madagascar Periwinkle",
+    image: "/images/IMAGE/27cdd2d7-6403-4ff7-999e-8e32466d461a.jpg",
+    href: "#periwinkle",
+  },
+  {
+    title: "Hibiscus (China Rose)",
+    image: "/images/IMAGE/280d8781-19fb-4dbd-a1e4-a3598018638a.jpg",
+    href: "#hibiscus",
+  },
+  {
+    title: "Chinese Banyan",
+    image: "/images/IMAGE/432f6c47-bcd3-404e-905e-3f87d97aa987.jpg",
+    href: "#banyan",
+  },
+  {
+    title: "Bougainvillea (Paper Flower)",
+    image: "/images/IMAGE/94713c19-0267-4f93-bb37-e96a1d1f3335.jpg",
+    href: "#bougainvillea",
+  },
+  {
+    title: "Marigold (Genda)",
+    image: "/images/IMAGE/ea3b6b18-374b-400c-9762-58214325b0bc.jpg",
+    href: "#marigold",
+  },
+  {
+    title: "Classic Rose",
+    image: "/images/IMAGE/f5dae4b8-cb5c-424a-bb7f-f334581df158.jpg",
     href: "#rose",
   },
 ];

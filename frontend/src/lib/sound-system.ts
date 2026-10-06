@@ -2,6 +2,9 @@
 // Procedural Web Audio API synthesis: zero external downloads, zero latency, +65% boosted volume
 
 class GlobalSoundSystem {
+  // Classroom-demo safety: every UI sound stays off until this flag is flipped.
+  // Call sites are untouched, so re-enabling is a one-line change.
+  private readonly muted = true;
   private ctx: AudioContext | null = null;
   private masterGain: GainNode | null = null;
   private lastWheelTime: number = 0;
@@ -30,6 +33,7 @@ class GlobalSoundSystem {
   }
 
   public init() {
+    if (this.muted) return;
     if (typeof window === "undefined") return;
     if (!this.ctx) {
       try {
