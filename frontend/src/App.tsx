@@ -1,39 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ReactLenis from 'lenis/react';
-import { Home, Leaf, MapPin, BookOpen } from 'lucide-react';
 import GlobalShell from './components/GlobalShell';
 import IntroAnimation from './components/IntroAnimation';
 import CinematicHero from './components/CinematicHero';
 import MinimalismSection from './components/MinimalismSection';
-import LeafCollection from './components/LeafCollection';
-import FieldProof from './components/FieldProof';
-import HerbariumFooter from './components/HerbariumFooter';
-import { BottomNavBar, type NavItem } from './components/ui/bottom-nav-bar';
-import { LEAF_COLLECTION } from './data/leaves';
-
-// ── Floating pill nav mapped to herbarium sections ──────────────────────────
-const NAV_ITEMS: NavItem[] = [
-  { label: 'Overview', icon: Home, targetId: 'hero-top' },
-  { label: 'Specimens', icon: Leaf, targetId: 'collection-section' },
-  { label: 'Field Proof', icon: MapPin, targetId: 'field-proof-section' },
-  { label: 'About', icon: BookOpen, targetId: 'about-section' },
-];
-
-function scrollToId(targetId: string | undefined) {
-  if (!targetId) return;
-  if (targetId === 'hero-top') {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    return;
-  }
-  const el = document.getElementById(targetId);
-  if (el) el.scrollIntoView({ behavior: 'smooth' });
-}
+import { Skiper31 } from './components/ui/text-scroll-animation';
+import OrbitCarousel from './components/ui/orbiting-carousel-with-animated-icons';
+import TigerTearReveal from './components/ui/tiger-tear-reveal';
+import WorksWheel, { DEFAULT_WORKS } from './components/ui/works-wheel';
+import BottomNavBar from './components/ui/bottom-nav-bar';
+import { preloadBotanicalImages } from './lib/api';
 
 export default function App() {
   const [introFinished, setIntroFinished] = useState(false);
   const [overlayVisible, setOverlayVisible] = useState(true);
+  const [currentSlide, setCurrentSlide] = useState(1);
+  const totalSlides = 4;
 
-  // ── Intro Animation completion handler (plays once, then reveals) ─────────
+  // ── Preload botanical archival imagery into browser memory ────────────────
+  useEffect(() => {
+    preloadBotanicalImages();
+  }, []);
+
+  // ── Intro Animation completion handler ────────────────────────────────────
   const handleIntroComplete = () => {
     setIntroFinished(true);
     setTimeout(() => {
@@ -41,60 +30,99 @@ export default function App() {
     }, 600);
   };
 
+  // ── Slide Handlers ─────────────────────────────────────────────────────────
+  const handleNextSlide = () => {
+    setCurrentSlide((prev) => (prev >= totalSlides ? 1 : prev + 1));
+  };
+
+  const handlePrevSlide = () => {
+    setCurrentSlide((prev) => (prev <= 1 ? totalSlides : prev - 1));
+  };
+
   return (
-    <ReactLenis root options={{ lerp: 0.1, duration: 1.0, smoothWheel: true }}>
+    <ReactLenis root options={{ lerp: 0.1, duration: 1.0, smoothWheel: true, wheelMultiplier: 1.1, touchMultiplier: 1.2 }}>
       <GlobalShell>
-        <div className="w-full min-h-screen bg-[#FAF7F2] text-[#1A2621] selection:bg-[#3F4E49] selection:text-[#FAF7F2] relative overflow-x-clip flex flex-col">
-          {/* ── Floating Top Navigation Pill ───────────────────────────────── */}
+        <div className="w-full min-h-screen bg-white text-black selection:bg-black selection:text-white relative overflow-x-clip flex flex-col">
+          {/* ── Figma-style Dynamic Floating Top Navigation Bar ── */}
           <BottomNavBar
             stickyTop
             autoHideOnScroll
-            items={NAV_ITEMS}
-            onItemSelect={(item) => scrollToId(item.targetId)}
+            onItemSelect={(item) => {
+              const targetId = item.targetId;
+              if (targetId) {
+                const el = document.getElementById(targetId);
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
           />
 
-          {/* ── Section 1: Herbarium Hero ──────────────────────────────────── */}
+          {/* ── Top Hero: Cinematic Hero Section with Looping Video Background ── */}
           <section id="hero-top" className="w-full min-h-screen relative">
-            <CinematicHero
-              onExploreCollection={() => scrollToId('collection-section')}
-              onViewFieldProof={() => scrollToId('field-proof-section')}
-            />
-          </section>
+        <CinematicHero
+          onBeginJourney={() => {
+            const el = document.getElementById('minimalism-section');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
+          onNavigateTab={(tab) => {
+            if (tab !== 'Home') {
+              const el = document.getElementById('minimalism-section');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            } else {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          }}
+        />
+      </section>
 
-          {/* ── Section 2: Eucalyptus Interlude ────────────────────────────── */}
-          <section id="interlude-section" className="w-full min-h-screen relative flex-1 flex flex-col justify-between bg-[#F8F5EE]">
-            <MinimalismSection />
-          </section>
+      {/* ── Section: Maximalism is a Power ── */}
+      <section id="minimalism-section" className="w-full min-h-screen relative flex-1 flex flex-col justify-between">
+        <MinimalismSection
+          currentSlide={currentSlide}
+          totalSlides={totalSlides}
+          onNextSlide={handleNextSlide}
+          onPrevSlide={handlePrevSlide}
+        />
+      </section>
 
-          {/* ── Section 3: 8 Preserved Leaf Specimens ───────────────────────── */}
-          <div className="w-full relative">
-            <LeafCollection specimens={LEAF_COLLECTION} />
-          </div>
+      {/* ── Section: 3D Kinetic Text Convergence (Half from left, half from right) ── */}
+      <section id="scroll-animation-section" className="w-full relative z-20">
+        <Skiper31 />
+      </section>
 
-          {/* ── Section 4: In-Situ Fieldwork & Geotag Verification ─────────── */}
-          <div className="w-full relative">
-            <FieldProof />
-          </div>
+      {/* ── Section: Orbiting Botanical Herbarium Section ── */}
+      <section id="orbit-carousel-section" className="w-full relative z-20 py-6 sm:py-12 bg-white overflow-hidden">
+        <OrbitCarousel />
+      </section>
 
-          {/* ── Section 5: Academic Project Submission Footer ──────────────── */}
-          <div className="w-full relative">
-            <HerbariumFooter onScrollToTop={() => scrollToId('hero-top')} />
-          </div>
+      {/* ── Section: Tiger Tear Reveal ── */}
+      <section id="tiger-tear-section" className="w-full relative z-20">
+        <TigerTearReveal />
+      </section>
 
-          {/* ── Opening Loading Animation Overlay (plays once on enter) ───── */}
-          {overlayVisible && (
-            <div
-              className="fixed inset-0 z-50 transition-opacity duration-600 ease-out"
-              style={{
-                opacity: introFinished ? 0 : 1,
-                pointerEvents: introFinished ? 'none' : 'auto',
-              }}
-            >
-              <IntroAnimation onComplete={handleIntroComplete} />
-            </div>
-          )}
+      {/* ── Section: 3D Works Wheel Portfolio Drum ── */}
+      <section id="works-wheel-section" className="w-full relative z-20 bg-white border-t border-black/5">
+        <WorksWheel items={DEFAULT_WORKS} label="Flora '26" action="Inspect" />
+      </section>
+
+      {/* ── Minimalist Closing Footer ── */}
+      <footer className="w-full py-16 bg-[#f2f1ee] border-t border-[#e2e0dc] text-center text-xs tracking-[0.25em] uppercase text-[#777777] relative z-20">
+        <p className="font-sans font-medium">© {new Date().getFullYear()} Aethera Studios • All Rights Reserved</p>
+      </footer>
+
+      {/* ── Opening Loading Animation Overlay (Plays ONCE on enter, then vanishes) ── */}
+      {overlayVisible && (
+        <div
+          className="fixed inset-0 z-50 transition-opacity duration-600 ease-out"
+          style={{
+            opacity: introFinished ? 0 : 1,
+            pointerEvents: introFinished ? 'none' : 'auto',
+          }}
+        >
+          <IntroAnimation onComplete={handleIntroComplete} />
         </div>
-      </GlobalShell>
+      )}
+      </div>
+    </GlobalShell>
     </ReactLenis>
   );
 }

@@ -36,21 +36,14 @@ export default function MinimalismSection(_props: Props) {
       {/* ── Main Content Area (Exact Dead Center: Not at left, not at right, perfectly in the middle) ──── */}
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-4 sm:px-12 pointer-events-none">
         <div className="max-w-3xl flex flex-col items-center text-center pointer-events-auto">
-          {/* Interlude headline: eucalyptus-branch showcase, herbarium wording */}
-          <p className="text-[11px] sm:text-xs font-semibold tracking-[0.3em] uppercase text-[#3F4E49] mb-4 animate-fade-rise">
-            From Field to Sheet
-          </p>
+          {/* Headline: "Maximalism is a power" with ultra-bold condensed typography */}
           <h1
             className="text-[2.3rem] xs:text-[2.8rem] sm:text-6xl md:text-7xl lg:text-[6.2rem] xl:text-[7.2rem] tracking-tight text-[#111111] leading-[0.94] text-center uppercase font-condensed"
             style={{ fontFamily: 'var(--font-condensed)' }}
           >
-            <span className="block">Pressed with</span>
-            <span className="block">patience</span>
+            <span className="block">Maximalism is</span>
+            <span className="block">a power</span>
           </h1>
-          <p className="mt-5 max-w-xl text-sm sm:text-base text-[#5F6B65] leading-relaxed animate-fade-rise-delay">
-            Eight leaves gathered at midday sun, dried under steady pressure,
-            and mounted for study — no shortcuts, only craft.
-          </p>
         </div>
       </div>
 
