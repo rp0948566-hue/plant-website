@@ -8,7 +8,6 @@ import {
   ChevronRight,
   Maximize2,
   X,
-  ExternalLink,
   ZoomIn,
   ZoomOut,
   Leaf,
@@ -596,16 +595,6 @@ export default function OrbitCarousel() {
 
               <button
                 type="button"
-                onClick={() => openLightbox(activeIndex)}
-                onMouseEnter={() => soundSystem.playButtonHover()}
-                className="px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold rounded-full bg-neutral-900 text-white hover:bg-black hover:shadow-lg hover:shadow-neutral-900/20 hover:scale-105 active:scale-95 transition-all cursor-pointer flex items-center gap-1.5 shrink-0"
-              >
-                <Maximize2 size={13} className="shrink-0" />
-                <span>Inspect Specimen</span>
-              </button>
-
-              <button
-                type="button"
                 onClick={next}
                 onMouseEnter={() => soundSystem.playNavHover()}
                 className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-700 hover:text-black flex items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95 shadow-xs shrink-0"
@@ -734,10 +723,10 @@ export default function OrbitCarousel() {
                 transition={{ type: "spring", damping: 28, stiffness: 320 }}
                 data-lenis-prevent="true"
                 onClick={(e) => e.stopPropagation()}
-                className="relative bg-neutral-950 border border-white/15 rounded-2xl sm:rounded-3xl shadow-[0_30px_100px_rgba(0,0,0,0.95)] max-w-6xl w-full max-h-[90vh] flex flex-col lg:flex-row overflow-hidden text-white"
+                className="relative bg-neutral-950 border border-white/15 rounded-2xl sm:rounded-3xl shadow-[0_30px_100px_rgba(0,0,0,0.95)] max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden text-white"
               >
-                {/* Left/Top: Specimen High-Resolution Sheet View */}
-                <div className="flex-1 relative flex items-center justify-center bg-black/75 p-3 sm:p-6 min-h-[36vh] max-h-[42vh] sm:min-h-[40vh] sm:max-h-[44vh] lg:min-h-[78vh] lg:max-h-[78vh] overflow-hidden">
+                {/* Photo-only stage: full photograph, zero details */}
+                <div className="relative flex items-center justify-center bg-black/75 p-3 sm:p-6 min-h-[70vh] max-h-[80vh] lg:min-h-[78vh] lg:max-h-[80vh] overflow-hidden">
                   <motion.img
                     key={activeLightboxSpecimen.id + (isZoomed ? "-zoomed" : "-normal")}
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -749,7 +738,7 @@ export default function OrbitCarousel() {
                     src={activeLightboxSpecimen.image}
                     alt={activeLightboxSpecimen.name}
                     onError={safeImage}
-                    className={`object-contain max-h-[34vh] sm:max-h-[38vh] lg:max-h-[74vh] w-auto max-w-full rounded-lg shadow-2xl transition-transform duration-300 ring-1 ring-white/10 ${
+                    className={`object-contain max-h-[64vh] sm:max-h-[66vh] lg:max-h-[74vh] w-auto max-w-full rounded-lg shadow-2xl transition-transform duration-300 ring-1 ring-white/10 ${
                       isZoomed ? "cursor-zoom-out" : "cursor-zoom-in"
                     }`}
                     onClick={() => setIsZoomed((prev) => !prev)}
@@ -796,99 +785,6 @@ export default function OrbitCarousel() {
                   </button>
                 </div>
 
-                {/* Right/Bottom: Archival Specimen Data Panel */}
-                <div
-                  data-lenis-prevent="true"
-                  className="modal-scrollable-content w-full lg:w-96 p-4 sm:p-6 lg:p-7 flex flex-col justify-start bg-neutral-900 border-t lg:border-t-0 lg:border-l border-white/10 overflow-y-auto max-h-[50vh] sm:max-h-[48vh] lg:max-h-[78vh] overscroll-contain"
-                >
-                  <div>
-                    {/* Archival Record Header */}
-                    <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-3 mb-3 sm:mb-4">
-                      <span className="font-mono text-[11px] sm:text-xs tracking-[0.2em] uppercase text-emerald-400 font-semibold flex items-center gap-1.5">
-                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                        {activeLightboxSpecimen.sheetNumber}
-                      </span>
-                      <span className="font-mono text-xs text-neutral-400">
-                        {lightboxIndex + 1} / {botanicalSpecimens.length}
-                      </span>
-                    </div>
-
-                    {/* Title & Taxonomy */}
-                    <h3 className="font-serif text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-white">
-                      {activeLightboxSpecimen.name}
-                    </h3>
-                    <p className="font-serif italic text-emerald-300 text-xs sm:text-sm lg:text-base mt-1 flex items-center gap-1.5">
-                      <Leaf size={14} className="text-emerald-400 shrink-0" />
-                      <span>{activeLightboxSpecimen.scientificName}</span>
-                    </p>
-
-                    {/* Metadata Grid */}
-                    <div className="mt-3 sm:mt-4 grid grid-cols-2 gap-2 text-xs">
-                      <div className="p-2 sm:p-2.5 rounded-lg bg-white/5 border border-white/10">
-                        <span className="block text-neutral-400 text-[9px] sm:text-[10px] uppercase font-mono tracking-wider">
-                          Family
-                        </span>
-                        <span className="font-semibold text-white mt-0.5 block truncate">
-                          {activeLightboxSpecimen.family}
-                        </span>
-                      </div>
-                      <div className="p-2 sm:p-2.5 rounded-lg bg-white/5 border border-white/10">
-                        <span className="block text-neutral-400 text-[9px] sm:text-[10px] uppercase font-mono tracking-wider">
-                          Classification
-                        </span>
-                        <span className="font-semibold text-white mt-0.5 block truncate">
-                          {activeLightboxSpecimen.category}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Curatorial Description */}
-                    <div className="mt-3 sm:mt-4 p-3 sm:p-3.5 rounded-xl bg-white/[0.04] border border-white/10">
-                      <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-widest text-neutral-400 block mb-1">
-                        Archival Record Notes
-                      </span>
-                      <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed font-sans">
-                        {activeLightboxSpecimen.description}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Bottom Actions & Shortcuts */}
-                  <div className="mt-auto pt-4 sm:pt-5 border-t border-white/10 flex flex-col gap-2">
-                    <a
-                      href={activeLightboxSpecimen.image}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => soundSystem.playLinkClick()}
-                      className="w-full py-2 sm:py-2.5 px-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium text-xs sm:text-sm flex items-center justify-center gap-2 transition-all cursor-pointer hover:shadow-lg border border-white/10"
-                    >
-                      <ExternalLink size={14} />
-                      <span>Open Raw Full Resolution JPG</span>
-                    </a>
-
-                    {/* Mobile Navigation Buttons */}
-                    <div className="flex items-center justify-between gap-2 lg:hidden pt-1">
-                      <button
-                        type="button"
-                        onClick={prevLightbox}
-                        className="flex-1 py-2 rounded-lg bg-white/10 hover:bg-white/15 text-xs text-white flex items-center justify-center gap-1 cursor-pointer"
-                      >
-                        <ChevronLeft size={14} /> Prev
-                      </button>
-                      <button
-                        type="button"
-                        onClick={nextLightbox}
-                        className="flex-1 py-2 rounded-lg bg-white/10 hover:bg-white/15 text-xs text-white flex items-center justify-center gap-1 cursor-pointer"
-                      >
-                        Next <ChevronRight size={14} />
-                      </button>
-                    </div>
-
-                    <span className="hidden lg:block text-center text-[10px] font-mono text-neutral-500 tracking-wider">
-                      Use ← → arrows to browse • ESC to close
-                    </span>
-                  </div>
-                </div>
               </motion.div>
             </motion.div>
           )}

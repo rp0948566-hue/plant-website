@@ -121,6 +121,17 @@ export function WorksWheel({
   const lastActiveRef = React.useRef(0);
   const [active, setActive] = React.useState(0);
   const [stage, setStage] = React.useState<Stage>({ w: 0, h: 0 });
+  const [viewer, setViewer] = React.useState<number | null>(null);
+
+  // Photo-only viewer: ESC closes it (drum arrows keep working underneath)
+  React.useEffect(() => {
+    if (viewer === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setViewer(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [viewer]);
 
   const count = items.length;
   const last = Math.max(count - 1, 0);
@@ -329,6 +340,7 @@ export function WorksWheel({
   );
 
   const drag = React.useRef<number | null>(null);
+  const tapPos = React.useRef<{ x: number; y: number } | null>(null);
 
   return (
     <section
@@ -351,6 +363,7 @@ export function WorksWheel({
         style={{ perspective: `${metrics.depth}px`, touchAction: "pan-y" }}
         onPointerDown={(event) => {
           drag.current = event.clientY;
+          tapPos.current = { x: event.clientX, y: event.clientY };
           try {
             event.currentTarget.setPointerCapture(event.pointerId);
           } catch {}
@@ -371,11 +384,27 @@ export function WorksWheel({
         }}
         onPointerCancel={(event) => {
           drag.current = null;
+          tapPos.current = null;
           try {
             if (event.currentTarget.hasPointerCapture(event.pointerId)) {
               event.currentTarget.releasePointerCapture(event.pointerId);
             }
           } catch {}
+        }}
+        onClick={(event) => {
+          // Pointer capture retargets card taps to the stage: a near-stationary
+          // press is a tap on the front card — open the photo-only viewer.
+          // Real buttons (index list, mobile pill) keep their own behaviour.
+          if ((event.target as HTMLElement).closest("button")) {
+            tapPos.current = null;
+            return;
+          }
+          if (tapPos.current) {
+            const dx = event.clientX - tapPos.current.x;
+            const dy = event.clientY - tapPos.current.y;
+            if (dx * dx + dy * dy < 100) setViewer(active);
+          }
+          tapPos.current = null;
         }}
         onKeyDown={(event) => {
           if (event.key === "ArrowDown") scrollToIndex(Math.min(last + 1, active + 2));
@@ -477,7 +506,7 @@ export function WorksWheel({
       </div>
 
       <ol
-        className="hidden sm:block text-zinc-500 absolute top-[7.5%] right-[3%] sm:right-[4%] text-right leading-[1.75] font-sans"
+        className="hidden sm:block text-zinc-500 absolute top-[7.5%] right-[3%] sm:right-[4%] text-right leading-[1.75] font-sans z-[120]"
         style={{ fontSize: metrics.index }}
       >
         {items.map((item, i) => (
@@ -497,7 +526,7 @@ export function WorksWheel({
       </ol>
 
       {/* Fixed corner details card: active specimen name + taxonomy stay put while the drum turns */}
-      <div className="absolute z-20 pointer-events-none left-4 bottom-20 sm:left-8 sm:bottom-8 max-w-[210px] sm:max-w-xs rounded-2xl border border-black/10 bg-white/92 backdrop-blur-md px-3.5 py-3 sm:px-4 shadow-[0_18px_40px_-18px_rgba(0,0,0,0.25)] text-left">
+      <div className="absolute z-[120] pointer-events-none left-4 bottom-20 sm:left-8 sm:bottom-8 max-w-[210px] sm:max-w-xs rounded-2xl border border-black/10 bg-white/92 backdrop-blur-md px-3.5 py-3 sm:px-4 shadow-[0_18px_40px_-18px_rgba(0,0,0,0.25)] text-left">
         <div className="font-mono text-[10px] sm:text-[11px] tracking-[0.2em] text-neutral-500">
           {String(active + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
         </div>
@@ -512,7 +541,7 @@ export function WorksWheel({
       </div>
 
       {/* Mobile Active Project Pill Indicator & Touch Controls */}
-      <div className="sm:hidden absolute bottom-5 inset-x-0 flex items-center justify-center pointer-events-none z-20 px-4">
+      <div className="sm:hidden absolute bottom-5 inset-x-0 flex items-center justify-center pointer-events-none z-[120] px-4">
         <div className="bg-white/95 backdrop-blur-md border border-black/10 px-3 py-1.5 rounded-full shadow-md text-xs font-medium text-black flex items-center gap-2 pointer-events-auto">
           <button
             type="button"
@@ -538,6 +567,53 @@ export function WorksWheel({
           </button>
         </div>
       </div>
+      {/* Photo-only viewer: full photograph, zero details */}
+      {viewer !== null && items[viewer] && (
+        <div
+          className="fixed inset-0 z-[200] bg-black/92 backdrop-blur-md flex items-center justify-center p-4 select-none"
+          onClick={() => setViewer(null)}
+          role="dialog"
+          aria-label="Specimen photograph viewer"
+        >
+          <button
+            type="button"
+            onClick={() => setViewer(null)}
+            aria-label="Close photograph viewer"
+            className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition-all cursor-pointer border border-white/20 text-lg leading-none"
+          >
+            ✕
+          </button>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setViewer((v) => (v === null ? v : (v - 1 + count) % count));
+            }}
+            aria-label="Previous photograph"
+            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition-all cursor-pointer border border-white/20 text-xl leading-none"
+          >
+            ‹
+          </button>
+          <img
+            src={items[viewer].image}
+            alt=""
+            onClick={(e) => e.stopPropagation()}
+            className="max-h-[86vh] max-w-full object-contain rounded-lg shadow-2xl"
+            draggable={false}
+          />
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setViewer((v) => (v === null ? v : (v + 1) % count));
+            }}
+            aria-label="Next photograph"
+            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition-all cursor-pointer border border-white/20 text-xl leading-none"
+          >
+            ›
+          </button>
+        </div>
+      )}
     </section>
   );
 }
