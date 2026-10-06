@@ -82,7 +82,7 @@ export default function CinematicHero({ onBeginJourney }: Props) {
         </h1>
 
         {/* Pearl Hero CTA Button with optimal touch target and spacing */}
-        <div className="mt-8 sm:mt-10 md:mt-12 animate-fade-rise-delay flex items-center justify-center">
+        <div className="mt-12 sm:mt-14 md:mt-16 animate-fade-rise-delay flex items-center justify-center">
           <PearlButton
             label="Explore Leaves"
             size="sm"

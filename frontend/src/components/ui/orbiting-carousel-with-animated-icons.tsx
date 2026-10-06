@@ -481,14 +481,14 @@ export default function OrbitCarousel() {
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-100 border border-neutral-200/80 mb-2 sm:mb-3">
           <Leaf size={12} className="text-emerald-700" />
           <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-neutral-600">
-            HERBARIUM ARCHIVE • 9 SPECIMENS
+            FIELD EVIDENCE • 9 GEOTAGS
           </span>
         </div>
         <h2 className="text-2xl sm:text-4xl md:text-5xl font-serif font-medium tracking-tight text-neutral-900 leading-tight">
-          Botanical Specimen Orbit
+          In-Situ Field Orbit
         </h2>
         <p className="text-xs sm:text-sm text-neutral-500 mt-1.5 sm:mt-2.5 max-w-md mx-auto">
-          Archival hand-pressed botanical sheets. Tap any specimen bubble or click inspect to view high-resolution taxonomy records.
+          Live geotagged captures from the hostel survey — every frame stamped with location, date and sky. Tap any bubble or inspect for the full photograph.
         </p>
       </div>
 
@@ -734,10 +734,10 @@ export default function OrbitCarousel() {
                 transition={{ type: "spring", damping: 28, stiffness: 320 }}
                 data-lenis-prevent="true"
                 onClick={(e) => e.stopPropagation()}
-                className="relative bg-neutral-950 border border-white/15 rounded-2xl sm:rounded-3xl shadow-[0_30px_100px_rgba(0,0,0,0.95)] max-w-6xl w-full max-h-[92vh] flex flex-col lg:flex-row overflow-hidden text-white"
+                className="relative bg-neutral-950 border border-white/15 rounded-2xl sm:rounded-3xl shadow-[0_30px_100px_rgba(0,0,0,0.95)] max-w-6xl w-full max-h-[90vh] flex flex-col lg:flex-row overflow-hidden text-white"
               >
                 {/* Left/Top: Specimen High-Resolution Sheet View */}
-                <div className="flex-1 relative flex items-center justify-center bg-black/75 p-3 sm:p-6 min-h-[46vh] sm:min-h-[54vh] lg:min-h-[78vh] overflow-hidden">
+                <div className="flex-1 relative flex items-center justify-center bg-black/75 p-3 sm:p-6 min-h-[36vh] max-h-[42vh] sm:min-h-[40vh] sm:max-h-[44vh] lg:min-h-[78vh] lg:max-h-[78vh] overflow-hidden">
                   <motion.img
                     key={activeLightboxSpecimen.id + (isZoomed ? "-zoomed" : "-normal")}
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -749,7 +749,7 @@ export default function OrbitCarousel() {
                     src={activeLightboxSpecimen.image}
                     alt={activeLightboxSpecimen.name}
                     onError={safeImage}
-                    className={`object-contain max-h-[44vh] sm:max-h-[52vh] lg:max-h-[74vh] w-auto max-w-full rounded-lg shadow-2xl transition-transform duration-300 ring-1 ring-white/10 ${
+                    className={`object-contain max-h-[34vh] sm:max-h-[38vh] lg:max-h-[74vh] w-auto max-w-full rounded-lg shadow-2xl transition-transform duration-300 ring-1 ring-white/10 ${
                       isZoomed ? "cursor-zoom-out" : "cursor-zoom-in"
                     }`}
                     onClick={() => setIsZoomed((prev) => !prev)}
@@ -799,7 +799,7 @@ export default function OrbitCarousel() {
                 {/* Right/Bottom: Archival Specimen Data Panel */}
                 <div
                   data-lenis-prevent="true"
-                  className="modal-scrollable-content w-full lg:w-96 p-4 sm:p-6 lg:p-7 flex flex-col justify-between bg-neutral-900 border-t lg:border-t-0 lg:border-l border-white/10 overflow-y-auto max-h-[46vh] sm:max-h-[38vh] lg:max-h-[78vh] overscroll-contain"
+                  className="modal-scrollable-content w-full lg:w-96 p-4 sm:p-6 lg:p-7 flex flex-col justify-start bg-neutral-900 border-t lg:border-t-0 lg:border-l border-white/10 overflow-y-auto max-h-[50vh] sm:max-h-[48vh] lg:max-h-[78vh] overscroll-contain"
                 >
                   <div>
                     {/* Archival Record Header */}
@@ -854,7 +854,7 @@ export default function OrbitCarousel() {
                   </div>
 
                   {/* Bottom Actions & Shortcuts */}
-                  <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-white/10 flex flex-col gap-2">
+                  <div className="mt-auto pt-4 sm:pt-5 border-t border-white/10 flex flex-col gap-2">
                     <a
                       href={activeLightboxSpecimen.image}
                       target="_blank"

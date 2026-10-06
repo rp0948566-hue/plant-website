@@ -18,6 +18,8 @@ import soundSystem from "@/lib/sound-system";
 export interface WorksWheelItem {
   /** Project name. Shown beside the front card and in the index. */
   title: string;
+  /** One-line taxonomy info shown under the centred front-card title. */
+  detail?: string;
   /** Cover art. Any src an <img> takes. */
   image: string;
   /** Where the card links to. Omit for a wheel that only browses. */
@@ -455,10 +457,22 @@ export function WorksWheel({
       </div>
       <div
         ref={titleRef}
-        className="pointer-events-none absolute top-1/2 left-[6%] sm:left-[8%] -translate-y-1/2 font-bold tracking-tight text-black font-sans opacity-0"
-        style={{ fontSize: metrics.title }}
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center opacity-0 px-4"
       >
-        {items[active]?.title}
+        <div
+          className="font-bold tracking-tight text-black font-sans leading-none"
+          style={{ fontSize: metrics.title * 0.52 }}
+        >
+          {items[active]?.title}
+        </div>
+        {items[active]?.detail && (
+          <div
+            className="font-serif italic text-neutral-600 mt-2"
+            style={{ fontSize: Math.max(metrics.title * 0.22, 12) }}
+          >
+            {items[active]?.detail}
+          </div>
+        )}
       </div>
 
       <ol
@@ -516,46 +530,55 @@ export function WorksWheel({
 export const DEFAULT_WORKS: WorksWheelItem[] = [
   {
     title: "Gardenia (Gandharaj)",
+    detail: "Gardenia jasminoides • Rubiaceae",
     image: "/images/IMAGE/0e755a6a-649e-4c15-a5cf-011359c928fb.jpg",
     href: "#gardenia",
   },
   {
     title: "Neem Tree",
+    detail: "Azadirachta indica • Meliaceae",
     image: "/images/IMAGE/1528e485-40dd-4482-a081-cc24ca87f081.jpg",
     href: "#neem",
   },
   {
     title: "Crown of Thorns",
+    detail: "Euphorbia milii • Euphorbiaceae",
     image: "/images/IMAGE/2446ea63-3b36-4f8b-b00c-fa218e1fec3d.jpg",
     href: "#crown-of-thorns",
   },
   {
     title: "Madagascar Periwinkle",
+    detail: "Catharanthus roseus • Apocynaceae",
     image: "/images/IMAGE/27cdd2d7-6403-4ff7-999e-8e32466d461a.jpg",
     href: "#periwinkle",
   },
   {
     title: "Hibiscus (China Rose)",
+    detail: "Hibiscus rosa-sinensis • Malvaceae",
     image: "/images/IMAGE/280d8781-19fb-4dbd-a1e4-a3598018638a.jpg",
     href: "#hibiscus",
   },
   {
     title: "Chinese Banyan",
+    detail: "Ficus microcarpa • Moraceae",
     image: "/images/IMAGE/432f6c47-bcd3-404e-905e-3f87d97aa987.jpg",
     href: "#banyan",
   },
   {
     title: "Bougainvillea (Paper Flower)",
+    detail: "Bougainvillea spectabilis • Nyctaginaceae",
     image: "/images/IMAGE/94713c19-0267-4f93-bb37-e96a1d1f3335.jpg",
     href: "#bougainvillea",
   },
   {
     title: "Marigold (Genda)",
+    detail: "Tagetes erecta • Asteraceae",
     image: "/images/IMAGE/ea3b6b18-374b-400c-9762-58214325b0bc.jpg",
     href: "#marigold",
   },
   {
     title: "Classic Rose",
+    detail: "Rosa damascena • Rosaceae",
     image: "/images/IMAGE/f5dae4b8-cb5c-424a-bb7f-f334581df158.jpg",
     href: "#rose",
   },
