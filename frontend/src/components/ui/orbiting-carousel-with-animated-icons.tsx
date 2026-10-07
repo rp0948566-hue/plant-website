@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
+  BookOpen,
   ChevronLeft,
   ChevronRight,
   Maximize2,
@@ -533,17 +534,7 @@ export default function OrbitCarousel() {
                     className="w-full h-full rounded-full border-4 border-white object-cover shadow-xl ring-2 ring-neutral-900/10 group-hover:scale-105 group-hover:ring-neutral-900 transition-all duration-200"
                   />
 
-                  {/* Case Study Button */}
-                  <Link
-                    to={`/case-study/orbit/${currentSpecimen.id}`}
-                    onClick={(e) => e.stopPropagation()}
-                    className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-[10] flex h-6 w-6 items-center justify-center rounded-full bg-white/80 hover:bg-white/90 backdrop-blur-sm text-neutral-800 hover:text-neutral-900 transition-all duration-200 pointer-events-auto"
-                  >
-                    <span className="text-xs sm:text-sm font-medium">Case</span>
-                    <span className="text-xs sm:text-sm font-medium block">Study</span>
-                  </Link>
-
-                 {/* Status Indicator */}
+                  {/* Status Indicator */}
                  <span className="absolute bottom-0.5 right-0.5 sm:bottom-1 sm:right-1 flex h-3.5 w-3.5 sm:h-4 sm:w-4">
                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                    <span className="relative inline-flex rounded-full h-3.5 w-3.5 sm:h-4 sm:w-4 bg-emerald-500 border-2 border-white shadow-xs"></span>
@@ -613,6 +604,23 @@ export default function OrbitCarousel() {
               >
                 <ChevronRight size={16} className="sm:w-5 sm:h-5" />
               </button>
+            </motion.div>
+
+            {/* Case Study CTA */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.25 }}
+              className="flex justify-center mt-3 sm:mt-4"
+            >
+              <Link
+                to={`/case-study/orbit/${currentSpecimen.id}`}
+                onMouseEnter={() => soundSystem.playNavHover()}
+                className="inline-flex items-center gap-1.5 rounded-full bg-neutral-900 px-4 py-2 text-xs sm:text-sm font-medium text-white hover:bg-black transition-all hover:scale-[1.03] active:scale-95 shadow-md"
+              >
+                <BookOpen size={14} className="shrink-0" />
+                Read Case Study
+              </Link>
             </motion.div>
           </motion.div>
         </AnimatePresence>

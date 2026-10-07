@@ -31,10 +31,10 @@ export default function App() {
 
     return (
       <ReactLenis root options={{ lerp: 0.1, duration: 1.0, smoothWheel: true, wheelMultiplier: 1.1, touchMultiplier: 1.2 }}>
-        <GlobalShell>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={
+              <GlobalShell>
                 <div className="w-full min-h-screen bg-white text-black selection:bg-black selection:text-white relative overflow-x-clip flex flex-col">
                   {/* ── Figma-style Dynamic Floating Top Navigation Bar ── */}
                   <BottomNavBar
@@ -97,11 +97,15 @@ export default function App() {
                     <p className="font-sans font-medium">© {new Date().getFullYear()} Leaf Herbarium • Botanical Fieldwork Archive</p>
                   </footer>
                 </div>
+              </GlobalShell>
               } />
-              <Route path="/case-study/:type/:id" element={<CaseStudyPage />} />
+              <Route path="/case-study/:type/:id" element={
+                <div className="w-full min-h-screen bg-white text-black selection:bg-black selection:text-white">
+                  <CaseStudyPage />
+                </div>
+              } />
             </Routes>
           </BrowserRouter>
-        </GlobalShell>
       </ReactLenis>
     );
 }

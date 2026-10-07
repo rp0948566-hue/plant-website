@@ -14,6 +14,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
+import { BookOpen } from "lucide-react";
 import soundSystem from "@/lib/sound-system";
 
 export interface WorksWheelItem {
@@ -448,14 +449,14 @@ export function WorksWheel({
                      className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
                      loading="lazy"
                    />
-                   {/* Case Study Button */}
+                   {/* Case Study pill */}
                    <Link
                      to={`/case-study/wheel/${i + 1}`}
                      onClick={(e) => e.stopPropagation()}
-                     className="absolute bottom-2 right-2 z-[10] flex h-6 w-6 items-center justify-center rounded-full bg-white/80 hover:bg-white/90 backdrop-blur-sm text-neutral-800 hover:text-neutral-900 transition-all duration-200 pointer-events-auto"
+                     className="absolute left-3 bottom-3 z-[10] inline-flex items-center gap-1.5 rounded-full bg-black/65 px-3 py-1.5 text-[0.7rem] font-medium text-white backdrop-blur-md border border-white/25 hover:bg-black/85 transition-all pointer-events-auto shadow-md"
                    >
-                     <span className="text-xs sm:text-sm font-medium">Case</span>
-                     <span className="text-xs sm:text-sm font-medium block">Study</span>
+                     <BookOpen size={12} className="shrink-0" />
+                     Case Study
                    </Link>
                    {action && item.href ? (
                      <span className="bg-white/90 text-black pointer-events-none absolute right-3 bottom-3 flex translate-y-1 items-center gap-1 rounded-full px-2.5 py-1 text-[0.7rem] font-medium opacity-0 backdrop-blur-sm shadow-sm transition group-hover:translate-y-0 group-hover:opacity-100">
@@ -548,6 +549,14 @@ export function WorksWheel({
             {items[active]?.detail}
           </div>
         )}
+        <Link
+          to={`/case-study/wheel/${active + 1}`}
+          onClick={(e) => e.stopPropagation()}
+          className="pointer-events-auto mt-2 inline-flex items-center gap-1 rounded-full bg-neutral-900 px-3 py-1.5 text-[11px] sm:text-xs font-medium text-white hover:bg-black transition-all shadow-sm"
+        >
+          <BookOpen size={12} className="shrink-0" />
+          Read Case Study
+        </Link>
       </div>
 
       {/* Mobile Active Project Pill Indicator & Touch Controls */}
